@@ -32,6 +32,10 @@ class TestEval < Test::Unit::TestCase
     assert_eval(0, "10 % 5")
   end
 
+  def test_division_should_raise_on_divide_by_zero
+    assert_raises(Einstein::ZeroDivisionError) { @parser.parse("1 / 0").eval }
+  end
+
   def test_division
     assert_eval(2, "10 / 5")
     assert_eval(2.0, "10.0 / 5.0")

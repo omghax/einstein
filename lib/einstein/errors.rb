@@ -1,4 +1,10 @@
 module Einstein
-  class ResolveError < StandardError
+  class Error < StandardError
+  end
+
+  class ResolveError < Error
+  end
+
+  class ZeroDivisionError < Error
   end
 end

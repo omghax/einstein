@@ -68,7 +68,9 @@ module Einstein
       end
 
       def visit_DivideNode(o)
-        o.left.accept(self) / o.value.accept(self)
+        dividend = o.value.accept(self)
+        raise ZeroDivisionError, "divided by zero" if dividend == 0
+        o.left.accept(self) / dividend
       end
 
       def visit_ModulusNode(o)
