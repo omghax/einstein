@@ -11,6 +11,18 @@ class TestParser < Test::Unit::TestCase
     assert_sexp([[:resolve, "x"]], @parser.parse("x"))
   end
 
+  def test_bitwise_or
+    assert_sexp([[:bitwise_or, [:lit, 5], [:lit, 10]]], @parser.parse("5 | 10"))
+  end
+
+  def test_bitwise_xor
+    assert_sexp([[:bitwise_xor, [:lit, 5], [:lit, 10]]], @parser.parse("5 ^ 10"))
+  end
+
+  def test_bitwise_and
+    assert_sexp([[:bitwise_and, [:lit, 5], [:lit, 10]]], @parser.parse("5 & 10"))
+  end
+
   def test_rshift
     assert_sexp([[:rshift, [:lit, 2], [:lit, 3]]], @parser.parse("2>>3"))
     assert_sexp([[:rshift, [:lit, 2], [:lit, 3]]], @parser.parse("2 >> 3"))

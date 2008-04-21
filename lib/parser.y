@@ -20,7 +20,22 @@ rule
   ;
 
   SourceElement:
+    BitwiseOrExpr
+  ;
+
+  BitwiseOrExpr:
+    BitwiseXorExpr
+  | BitwiseOrExpr "|" BitwiseXorExpr { result = BitwiseOrNode.new(val[0], val[2]) }
+  ;
+
+  BitwiseXorExpr:
+    BitwiseAndExpr
+  | BitwiseXorExpr "^" BitwiseAndExpr { result = BitwiseXorNode.new(val[0], val[2]) }
+  ;
+
+  BitwiseAndExpr:
     ShiftExpr
+  | BitwiseAndExpr "&" ShiftExpr { result = BitwiseAndNode.new(val[0], val[2]) }
   ;
 
   ShiftExpr:

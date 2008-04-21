@@ -8,7 +8,8 @@ module Einstein
         BitwiseNot Resolve UnaryMinus UnaryPlus
       }
       BINARY_NODES = %w{
-        Add Divide LeftShift Modulus Multiply RightShift Subtract
+        Add BitwiseAnd BitwiseOr BitwiseXor Divide LeftShift Modulus Multiply
+        RightShift Subtract
       }
       ARRAY_VALUE_NODES = %w{
         SourceElements
@@ -134,6 +135,18 @@ module Einstein
 
       def visit_RightShiftNode(o)
         [:rshift, *super]
+      end
+
+      def visit_BitwiseAndNode(o)
+        [:bitwise_and, *super]
+      end
+
+      def visit_BitwiseXorNode(o)
+        [:bitwise_xor, *super]
+      end
+
+      def visit_BitwiseOrNode(o)
+        [:bitwise_or, *super]
       end
 
       def visit_ResolveNode(o)

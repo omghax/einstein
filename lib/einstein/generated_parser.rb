@@ -14,92 +14,102 @@ module Einstein
 
   class GeneratedParser < Racc::Parser
 
-module_eval <<'..end lib/parser.y modeval..id77ccb8c7d2', 'lib/parser.y', 65
+module_eval <<'..end lib/parser.y modeval..id652d160d22', 'lib/parser.y', 80
   include Einstein::Nodes
-..end lib/parser.y modeval..id77ccb8c7d2
+..end lib/parser.y modeval..id652d160d22
 
 ##### racc 1.4.5 generates ###
 
 racc_reduce_table = [
  0, 0, :racc_error,
- 1, 15, :_reduce_none,
- 2, 15, :_reduce_2,
- 1, 16, :_reduce_none,
- 1, 17, :_reduce_none,
- 3, 17, :_reduce_5,
- 3, 17, :_reduce_6,
  1, 18, :_reduce_none,
- 3, 18, :_reduce_8,
- 3, 18, :_reduce_9,
+ 2, 18, :_reduce_2,
  1, 19, :_reduce_none,
- 3, 19, :_reduce_11,
- 3, 19, :_reduce_12,
- 3, 19, :_reduce_13,
  1, 20, :_reduce_none,
- 2, 20, :_reduce_15,
- 2, 20, :_reduce_16,
- 2, 20, :_reduce_17,
+ 3, 20, :_reduce_5,
  1, 21, :_reduce_none,
- 1, 21, :_reduce_19,
- 1, 22, :_reduce_20 ]
+ 3, 21, :_reduce_7,
+ 1, 22, :_reduce_none,
+ 3, 22, :_reduce_9,
+ 1, 23, :_reduce_none,
+ 3, 23, :_reduce_11,
+ 3, 23, :_reduce_12,
+ 1, 24, :_reduce_none,
+ 3, 24, :_reduce_14,
+ 3, 24, :_reduce_15,
+ 1, 25, :_reduce_none,
+ 3, 25, :_reduce_17,
+ 3, 25, :_reduce_18,
+ 3, 25, :_reduce_19,
+ 1, 26, :_reduce_none,
+ 2, 26, :_reduce_21,
+ 2, 26, :_reduce_22,
+ 2, 26, :_reduce_23,
+ 1, 27, :_reduce_none,
+ 1, 27, :_reduce_25,
+ 1, 28, :_reduce_26 ]
 
-racc_reduce_n = 21
+racc_reduce_n = 27
 
-racc_shift_n = 34
+racc_shift_n = 43
 
 racc_action_table = [
-    15,    24,    22,    23,    17,    18,     5,     7,     9,    11,
-    24,    22,    23,     2,     5,     7,     9,    11,    24,    22,
-    23,     2,     5,     7,     9,    11,    19,    20,    26,     2,
-     5,     7,     9,    11,    19,    20,   nil,     2,     5,     7,
-     9,    11,    19,    20,   nil,     2,     5,     7,     9,    11,
-   nil,   nil,   nil,     2,     5,     7,     9,    11,   nil,   nil,
-   nil,     2,     5,     7,     9,    11,   nil,   nil,   nil,     2,
-     5,     7,     9,    11,   nil,   nil,   nil,     2,     5,     7,
-     9,    11,   nil,   nil,   nil,     2,     5,     7,     9,    11,
-   nil,   nil,   nil,     2,     5,     7,     9,    11,   nil,   nil,
-   nil,     2 ]
+    28,    20,    21,    10,    12,    31,    10,    12,     1,     3,
+    18,     1,     3,     8,    10,    12,     8,    10,    12,     1,
+     3,    40,     1,     3,     8,    10,    12,     8,    10,    12,
+     1,     3,    30,     1,     3,     8,    10,    12,     8,    10,
+    12,     1,     3,    31,     1,     3,     8,    10,    12,     8,
+    10,    12,     1,     3,    18,     1,     3,     8,    10,    12,
+     8,    10,    12,     1,     3,   nil,     1,     3,     8,    10,
+    12,     8,    10,    12,     1,     3,   nil,     1,     3,     8,
+    10,    12,     8,    22,    23,     1,     3,    24,    25,    26,
+     8,    24,    25,    26,    24,    25,    26,    20,    21,    22,
+    23,    22,    23 ]
 
 racc_action_check = [
-     3,    30,    30,    30,     6,     6,     3,     3,     3,     3,
-    10,    10,    10,     3,     9,     9,     9,     9,    29,    29,
-    29,     9,     0,     0,     0,     0,     8,     8,    15,     0,
-    24,    24,    24,    24,    28,    28,   nil,    24,    23,    23,
-    23,    23,    27,    27,   nil,    23,     2,     2,     2,     2,
-   nil,   nil,   nil,     2,    22,    22,    22,    22,   nil,   nil,
-   nil,    22,    11,    11,    11,    11,   nil,   nil,   nil,    11,
-    20,    20,    20,    20,   nil,   nil,   nil,    20,    17,    17,
-    17,    17,   nil,   nil,   nil,    17,    19,    19,    19,    19,
-   nil,   nil,   nil,    19,    18,    18,    18,    18,   nil,   nil,
-   nil,    18 ]
+    13,    32,    32,     8,     8,    16,    13,    13,     8,     8,
+     2,    13,    13,     8,    31,    31,    13,     3,     3,    31,
+    31,    28,     3,     3,    31,    30,    30,     3,    26,    26,
+    30,    30,    15,    26,    26,    30,    25,    25,    26,     1,
+     1,    25,    25,    41,     1,     1,    25,     0,     0,     1,
+    24,    24,     0,     0,    42,    24,    24,     0,    23,    23,
+    24,    18,    18,    23,    23,   nil,    18,    18,    23,    20,
+    20,    18,    21,    21,    20,    20,   nil,    21,    21,    20,
+    22,    22,    21,     5,     5,    22,    22,    35,    35,    35,
+    22,    36,    36,    36,     6,     6,     6,     4,     4,    34,
+    34,    33,    33 ]
 
 racc_action_pointer = [
-    16,   nil,    40,     0,   nil,   nil,     0,   nil,    18,     8,
-     0,    56,   nil,   nil,   nil,    28,   nil,    72,    88,    80,
-    64,   nil,    48,    32,    24,   nil,   nil,    34,    26,     8,
-    -9,   nil,   nil,   nil ]
+    41,    33,     0,    11,    93,    72,    81,   nil,    -3,   nil,
+   nil,   nil,   nil,     0,   nil,    24,    -4,   nil,    55,   nil,
+    63,    66,    74,    52,    44,    30,    22,   nil,    21,   nil,
+    19,     8,    -3,    90,    88,    74,    78,   nil,   nil,   nil,
+   nil,    34,    44 ]
 
 racc_action_default = [
-   -21,   -18,   -21,   -21,    -1,   -20,    -3,   -19,    -4,   -21,
-    -7,   -21,   -10,   -14,   -17,   -21,    -2,   -21,   -21,   -21,
-   -21,   -15,   -21,   -21,   -21,   -16,    34,    -5,    -6,    -8,
-    -9,   -12,   -13,   -11 ]
+   -27,   -27,    -6,   -27,    -8,   -10,   -13,   -16,   -27,   -20,
+   -26,   -24,   -25,   -27,    -1,    -3,    -4,   -21,   -27,   -22,
+   -27,   -27,   -27,   -27,   -27,   -27,   -27,   -23,   -27,    -2,
+   -27,   -27,    -9,   -11,   -12,   -14,   -15,   -17,   -18,   -19,
+    43,    -5,    -7 ]
 
 racc_goto_table = [
-    14,     4,    29,    30,    16,    27,    28,    21,     3,    25,
-   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-    31,    32,    33 ]
+    17,    14,    19,    35,    36,    33,    34,    27,    32,    42,
+    41,    13,   nil,   nil,    29,   nil,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,    37,    38,    39 ]
 
 racc_goto_check = [
-     6,     2,     5,     5,     2,     4,     4,     6,     1,     6,
-   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-     6,     6,     6 ]
+     9,     2,     9,     8,     8,     7,     7,     9,     6,     5,
+     4,     1,   nil,   nil,     2,   nil,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,     9,     9,     9 ]
 
 racc_goto_pointer = [
-   nil,     8,     1,   nil,   -12,   -17,    -2,   nil,   nil ]
+   nil,    11,     1,   nil,   -20,   -22,   -10,   -15,   -19,    -1,
+   nil,   nil ]
 
 racc_goto_default = [
-   nil,   nil,   nil,     6,     8,    10,    12,    13,     1 ]
+   nil,   nil,   nil,    15,    16,     2,     4,     5,     6,     7,
+     9,    11 ]
 
 racc_token_table = {
  false => 0,
@@ -110,16 +120,19 @@ racc_token_table = {
  :RSHIFT => 5,
  :NUMBER => 6,
  :IDENT => 7,
- "+" => 8,
- "-" => 9,
- "*" => 10,
- "/" => 11,
- "%" => 12,
- "~" => 13 }
+ "|" => 8,
+ "^" => 9,
+ "&" => 10,
+ "+" => 11,
+ "-" => 12,
+ "*" => 13,
+ "/" => 14,
+ "%" => 15,
+ "~" => 16 }
 
 racc_use_result_var = true
 
-racc_nt_base = 14
+racc_nt_base = 17
 
 Racc_arg = [
  racc_action_table,
@@ -146,6 +159,9 @@ Racc_token_to_s_table = [
 'RSHIFT',
 'NUMBER',
 'IDENT',
+'"|"',
+'"^"',
+'"&"',
 '"+"',
 '"-"',
 '"*"',
@@ -155,6 +171,9 @@ Racc_token_to_s_table = [
 '$start',
 'SourceElements',
 'SourceElement',
+'BitwiseOrExpr',
+'BitwiseXorExpr',
+'BitwiseAndExpr',
 'ShiftExpr',
 'AdditiveExpr',
 'MultiplicativeExpr',
@@ -183,91 +202,118 @@ module_eval <<'.,.,', 'lib/parser.y', 18
 
 module_eval <<'.,.,', 'lib/parser.y', 27
   def _reduce_5( val, _values, result )
- result = LeftShiftNode.new(val[0], val[2])
+ result = BitwiseOrNode.new(val[0], val[2])
    result
   end
 .,.,
 
-module_eval <<'.,.,', 'lib/parser.y', 28
-  def _reduce_6( val, _values, result )
- result = RightShiftNode.new(val[0], val[2])
+ # reduce 6 omitted
+
+module_eval <<'.,.,', 'lib/parser.y', 32
+  def _reduce_7( val, _values, result )
+ result = BitwiseXorNode.new(val[0], val[2])
    result
   end
 .,.,
 
- # reduce 7 omitted
+ # reduce 8 omitted
 
-module_eval <<'.,.,', 'lib/parser.y', 33
-  def _reduce_8( val, _values, result )
- result = AddNode.new(val[0], val[2])
-   result
-  end
-.,.,
-
-module_eval <<'.,.,', 'lib/parser.y', 34
+module_eval <<'.,.,', 'lib/parser.y', 37
   def _reduce_9( val, _values, result )
- result = SubtractNode.new(val[0], val[2])
+ result = BitwiseAndNode.new(val[0], val[2])
    result
   end
 .,.,
 
  # reduce 10 omitted
 
-module_eval <<'.,.,', 'lib/parser.y', 39
+module_eval <<'.,.,', 'lib/parser.y', 42
   def _reduce_11( val, _values, result )
+ result = LeftShiftNode.new(val[0], val[2])
+   result
+  end
+.,.,
+
+module_eval <<'.,.,', 'lib/parser.y', 43
+  def _reduce_12( val, _values, result )
+ result = RightShiftNode.new(val[0], val[2])
+   result
+  end
+.,.,
+
+ # reduce 13 omitted
+
+module_eval <<'.,.,', 'lib/parser.y', 48
+  def _reduce_14( val, _values, result )
+ result = AddNode.new(val[0], val[2])
+   result
+  end
+.,.,
+
+module_eval <<'.,.,', 'lib/parser.y', 49
+  def _reduce_15( val, _values, result )
+ result = SubtractNode.new(val[0], val[2])
+   result
+  end
+.,.,
+
+ # reduce 16 omitted
+
+module_eval <<'.,.,', 'lib/parser.y', 54
+  def _reduce_17( val, _values, result )
  result = MultiplyNode.new(val[0], val[2])
    result
   end
 .,.,
 
-module_eval <<'.,.,', 'lib/parser.y', 40
-  def _reduce_12( val, _values, result )
+module_eval <<'.,.,', 'lib/parser.y', 55
+  def _reduce_18( val, _values, result )
  result = DivideNode.new(val[0], val[2])
    result
   end
 .,.,
 
-module_eval <<'.,.,', 'lib/parser.y', 41
-  def _reduce_13( val, _values, result )
+module_eval <<'.,.,', 'lib/parser.y', 56
+  def _reduce_19( val, _values, result )
  result = ModulusNode.new(val[0], val[2])
    result
   end
 .,.,
 
- # reduce 14 omitted
+ # reduce 20 omitted
 
-module_eval <<'.,.,', 'lib/parser.y', 46
-  def _reduce_15( val, _values, result )
+module_eval <<'.,.,', 'lib/parser.y', 61
+  def _reduce_21( val, _values, result )
  result = UnaryPlusNode.new(val[1])
    result
   end
 .,.,
 
-module_eval <<'.,.,', 'lib/parser.y', 47
-  def _reduce_16( val, _values, result )
+module_eval <<'.,.,', 'lib/parser.y', 62
+  def _reduce_22( val, _values, result )
  result = UnaryMinusNode.new(val[1])
    result
   end
 .,.,
 
-module_eval <<'.,.,', 'lib/parser.y', 48
-  def _reduce_17( val, _values, result )
+module_eval <<'.,.,', 'lib/parser.y', 63
+  def _reduce_23( val, _values, result )
  result = BitwiseNotNode.new(val[1])
    result
   end
 .,.,
 
- # reduce 18 omitted
+ # reduce 24 omitted
 
-module_eval <<'.,.,', 'lib/parser.y', 53
-  def _reduce_19( val, _values, result )
+module_eval <<'.,.,', 'lib/parser.y', 68
+  def _reduce_25( val, _values, result )
  result = ResolveNode.new(val.first)
    result
   end
 .,.,
 
-module_eval <<'.,.,', 'lib/parser.y', 57
-  def _reduce_20( val, _values, result )
+module_eval <<'.,.,', 'lib/parser.y', 72
+  def _reduce_26( val, _values, result )
  result = NumberNode.new(val.first)
    result
   end

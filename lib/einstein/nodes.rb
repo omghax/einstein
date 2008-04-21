@@ -67,6 +67,15 @@ module Einstein
     class RightShiftNode < BinaryNode
     end
 
+    class BitwiseAndNode < BinaryNode
+    end
+
+    class BitwiseXorNode < BinaryNode
+    end
+
+    class BitwiseOrNode < BinaryNode
+    end
+
     class ResolveNode < Node
     end
   end
