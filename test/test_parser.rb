@@ -7,6 +7,10 @@ class TestParser < Test::Unit::TestCase
     @parser.logger = Logger.new(STDERR)
   end
 
+  def test_resolve
+    assert_sexp([[:resolve, "x"]], @parser.parse("x"))
+  end
+
   def test_rshift
     assert_sexp([[:rshift, [:lit, 2], [:lit, 3]]], @parser.parse("2>>3"))
     assert_sexp([[:rshift, [:lit, 2], [:lit, 3]]], @parser.parse("2 >> 3"))

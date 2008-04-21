@@ -43,10 +43,15 @@ rule
   ;
 
   UnaryExpr:
-    Literal
+    PrimaryExpr
   | "+" UnaryExpr { result = UnaryPlusNode.new(val[1]) }
   | "-" UnaryExpr { result = UnaryMinusNode.new(val[1]) }
   | "~" UnaryExpr { result = BitwiseNotNode.new(val[1]) }
+  ;
+
+  PrimaryExpr:
+    Literal
+  | IDENT { result = ResolveNode.new(val.first) }
   ;
 
   Literal:

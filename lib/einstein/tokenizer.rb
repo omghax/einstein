@@ -30,6 +30,10 @@ module Einstein
         [LITERALS[value], value]
       end
 
+      token(:IDENT, /\A(\w|\$)+/) do |type,value|
+        [type, value]
+      end
+
       token(:WS, /\A[\s\r\n]*/m)
 
       token(:SINGLE_CHAR, /\A./) do |type, value|

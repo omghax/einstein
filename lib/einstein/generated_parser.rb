@@ -14,9 +14,9 @@ module Einstein
 
   class GeneratedParser < Racc::Parser
 
-module_eval <<'..end lib/parser.y modeval..id81db39d2e7', 'lib/parser.y', 60
+module_eval <<'..end lib/parser.y modeval..id77ccb8c7d2', 'lib/parser.y', 65
   include Einstein::Nodes
-..end lib/parser.y modeval..id81db39d2e7
+..end lib/parser.y modeval..id77ccb8c7d2
 
 ##### racc 1.4.5 generates ###
 
@@ -39,61 +39,67 @@ racc_reduce_table = [
  2, 20, :_reduce_15,
  2, 20, :_reduce_16,
  2, 20, :_reduce_17,
- 1, 21, :_reduce_18 ]
+ 1, 21, :_reduce_none,
+ 1, 21, :_reduce_19,
+ 1, 22, :_reduce_20 ]
 
-racc_reduce_n = 19
+racc_reduce_n = 21
 
-racc_shift_n = 32
+racc_shift_n = 34
 
 racc_action_table = [
-    13,    22,    20,    21,    15,    16,     4,    24,     7,     9,
-    17,    18,     4,     1,     7,     9,    17,    18,     4,     1,
-     7,     9,    17,    18,     4,     1,     7,     9,   nil,   nil,
-     4,     1,     7,     9,   nil,   nil,     4,     1,     7,     9,
-   nil,   nil,     4,     1,     7,     9,   nil,   nil,     4,     1,
-     7,     9,   nil,   nil,     4,     1,     7,     9,   nil,   nil,
-     4,     1,     7,     9,   nil,   nil,     4,     1,     7,     9,
-   nil,   nil,     4,     1,     7,     9,    22,    20,    21,     1,
-    22,    20,    21 ]
+    15,    24,    22,    23,    17,    18,     5,     7,     9,    11,
+    24,    22,    23,     2,     5,     7,     9,    11,    24,    22,
+    23,     2,     5,     7,     9,    11,    19,    20,    26,     2,
+     5,     7,     9,    11,    19,    20,   nil,     2,     5,     7,
+     9,    11,    19,    20,   nil,     2,     5,     7,     9,    11,
+   nil,   nil,   nil,     2,     5,     7,     9,    11,   nil,   nil,
+   nil,     2,     5,     7,     9,    11,   nil,   nil,   nil,     2,
+     5,     7,     9,    11,   nil,   nil,   nil,     2,     5,     7,
+     9,    11,   nil,   nil,   nil,     2,     5,     7,     9,    11,
+   nil,   nil,   nil,     2,     5,     7,     9,    11,   nil,   nil,
+   nil,     2 ]
 
 racc_action_check = [
-     2,    28,    28,    28,     5,     5,     2,    13,     2,     2,
-     6,     6,     7,     2,     7,     7,    26,    26,     0,     7,
-     0,     0,    25,    25,    22,     0,    22,    22,   nil,   nil,
-    21,    22,    21,    21,   nil,   nil,     1,    21,     1,     1,
-   nil,   nil,    20,     1,    20,    20,   nil,   nil,     9,    20,
-     9,     9,   nil,   nil,    18,     9,    18,    18,   nil,   nil,
-    15,    18,    15,    15,   nil,   nil,    17,    15,    17,    17,
-   nil,   nil,    16,    17,    16,    16,     8,     8,     8,    16,
-    27,    27,    27 ]
+     3,    30,    30,    30,     6,     6,     3,     3,     3,     3,
+    10,    10,    10,     3,     9,     9,     9,     9,    29,    29,
+    29,     9,     0,     0,     0,     0,     8,     8,    15,     0,
+    24,    24,    24,    24,    28,    28,   nil,    24,    23,    23,
+    23,    23,    27,    27,   nil,    23,     2,     2,     2,     2,
+   nil,   nil,   nil,     2,    22,    22,    22,    22,   nil,   nil,
+   nil,    22,    11,    11,    11,    11,   nil,   nil,   nil,    11,
+    20,    20,    20,    20,   nil,   nil,   nil,    20,    17,    17,
+    17,    17,   nil,   nil,   nil,    17,    19,    19,    19,    19,
+   nil,   nil,   nil,    19,    18,    18,    18,    18,   nil,   nil,
+   nil,    18 ]
 
 racc_action_pointer = [
-    12,    30,     0,   nil,   nil,     0,     2,     6,    66,    42,
-   nil,   nil,   nil,     7,   nil,    54,    66,    60,    48,   nil,
-    36,    24,    18,   nil,   nil,    14,     8,    70,    -9,   nil,
-   nil,   nil ]
+    16,   nil,    40,     0,   nil,   nil,     0,   nil,    18,     8,
+     0,    56,   nil,   nil,   nil,    28,   nil,    72,    88,    80,
+    64,   nil,    48,    32,    24,   nil,   nil,    34,    26,     8,
+    -9,   nil,   nil,   nil ]
 
 racc_action_default = [
-   -19,   -19,   -19,    -1,   -18,    -3,    -4,   -19,    -7,   -19,
-   -10,   -14,   -17,   -19,    -2,   -19,   -19,   -19,   -19,   -15,
-   -19,   -19,   -19,   -16,    32,    -5,    -6,    -8,    -9,   -12,
-   -13,   -11 ]
+   -21,   -18,   -21,   -21,    -1,   -20,    -3,   -19,    -4,   -21,
+    -7,   -21,   -10,   -14,   -17,   -21,    -2,   -21,   -21,   -21,
+   -21,   -15,   -21,   -21,   -21,   -16,    34,    -5,    -6,    -8,
+    -9,   -12,   -13,   -11 ]
 
 racc_goto_table = [
-    12,     3,     2,    14,    27,    28,    19,   nil,    23,    25,
-    26,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,    29,
-    30,    31 ]
+    14,     4,    29,    30,    16,    27,    28,    21,     3,    25,
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
+    31,    32,    33 ]
 
 racc_goto_check = [
-     6,     2,     1,     2,     5,     5,     6,   nil,     6,     4,
-     4,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,     6,
-     6,     6 ]
+     6,     2,     5,     5,     2,     4,     4,     6,     1,     6,
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
+     6,     6,     6 ]
 
 racc_goto_pointer = [
-   nil,     2,     1,   nil,    -6,   -13,    -1,   nil ]
+   nil,     8,     1,   nil,   -12,   -17,    -2,   nil,   nil ]
 
 racc_goto_default = [
-   nil,   nil,   nil,     5,     6,     8,    10,    11 ]
+   nil,   nil,   nil,     6,     8,    10,    12,    13,     1 ]
 
 racc_token_table = {
  false => 0,
@@ -153,6 +159,7 @@ Racc_token_to_s_table = [
 'AdditiveExpr',
 'MultiplicativeExpr',
 'UnaryExpr',
+'PrimaryExpr',
 'Literal']
 
 Racc_debug_parser = false
@@ -250,8 +257,17 @@ module_eval <<'.,.,', 'lib/parser.y', 48
   end
 .,.,
 
-module_eval <<'.,.,', 'lib/parser.y', 52
-  def _reduce_18( val, _values, result )
+ # reduce 18 omitted
+
+module_eval <<'.,.,', 'lib/parser.y', 53
+  def _reduce_19( val, _values, result )
+ result = ResolveNode.new(val.first)
+   result
+  end
+.,.,
+
+module_eval <<'.,.,', 'lib/parser.y', 57
+  def _reduce_20( val, _values, result )
  result = NumberNode.new(val.first)
    result
   end

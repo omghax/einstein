@@ -62,5 +62,8 @@ module Einstein
 
     class RightShiftNode < BinaryNode
     end
+
+    class ResolveNode < Node
+    end
   end
 end
