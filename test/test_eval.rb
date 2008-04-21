@@ -17,6 +17,18 @@ class TestEval < Test::Unit::TestCase
     assert_eval(16, "x * 4", :x => 4)
   end
 
+  def test_bitwise_or
+    assert_eval(0b1111, "0b1100 | 0b1111")
+  end
+
+  def test_bitwise_xor
+    assert_eval(0b0011, "0b1100 ^ 0b1111")
+  end
+
+  def test_bitwise_and
+    assert_eval(0b1100, "0b1100 & 0b1111")
+  end
+
   def test_subtraction
     assert_eval(5, "10 - 5")
     assert_eval(-5, "5 - 10")

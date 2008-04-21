@@ -86,6 +86,18 @@ module Einstein
         o.left.accept(self) - o.value.accept(self)
       end
 
+      def visit_BitwiseAndNode(o)
+        o.left.accept(self) & o.value.accept(self)
+      end
+
+      def visit_BitwiseXorNode(o)
+        o.left.accept(self) ^ o.value.accept(self)
+      end
+
+      def visit_BitwiseOrNode(o)
+        o.left.accept(self) | o.value.accept(self)
+      end
+
       def visit_ResolveNode(o)
         raise ResolveError, "undefined variable: #{o.value}" unless @scope.has_key?(o.value.to_sym)
         @scope[o.value.to_sym]
