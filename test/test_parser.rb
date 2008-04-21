@@ -5,6 +5,31 @@ class TestParser < Test::Unit::TestCase
     @parser = Einstein::Parser.new
   end
 
+  def test_subtraction
+    assert_sexp([[:subtract, [:lit, 2], [:lit, 1]]], @parser.parse("2-1"))
+    assert_sexp([[:subtract, [:lit, 2], [:lit, 1]]], @parser.parse("2 - 1"))
+  end
+
+  def test_addition
+    assert_sexp([[:add, [:lit, 1], [:lit, 2]]], @parser.parse("1+2"))
+    assert_sexp([[:add, [:lit, 1], [:lit, 2]]], @parser.parse("1 + 2"))
+  end
+
+  def test_modulus
+    assert_sexp([[:modulus, [:lit, 10], [:lit, 5]]], @parser.parse("10%5"))
+    assert_sexp([[:modulus, [:lit, 10], [:lit, 5]]], @parser.parse("10 % 5"))
+  end
+
+  def test_division
+    assert_sexp([[:divide, [:lit, 10], [:lit, 5]]], @parser.parse("10/5"))
+    assert_sexp([[:divide, [:lit, 10], [:lit, 5]]], @parser.parse("10 / 5"))
+  end
+
+  def test_multiplication
+    assert_sexp([[:multiply, [:lit, 5], [:lit, 10]]], @parser.parse("5*10"))
+    assert_sexp([[:multiply, [:lit, 5], [:lit, 10]]], @parser.parse("5 * 10"))
+  end
+
   def test_float_scientific
     # Unsigned number, unsigned exponent, lowercase e
     assert_sexp([[:lit, 1.0e1]], @parser.parse("1.0e1"))

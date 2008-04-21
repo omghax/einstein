@@ -22,9 +22,11 @@ module Einstein
     private
 
     def next_token
-      return [false, false] if @position >= @tokens.length
-      n_token = @tokens[@position]
-      @position += 1
+      begin
+        return [false, false] if @position >= @tokens.length
+        n_token = @tokens[@position]
+        @position += 1
+      end while [:COMMENT, :WS].include?(n_token[0])
       n_token
     end
   end

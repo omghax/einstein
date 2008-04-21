@@ -7,6 +7,9 @@ module Einstein
       SINGLE_VALUE_NODES = %w{
         UnaryMinus UnaryPlus
       }
+      BINARY_NODES = %w{
+        Add Divide Modulus Multiply Subtract
+      }
       ARRAY_VALUE_NODES = %w{
         SourceElements
       }
@@ -17,6 +20,12 @@ module Einstein
 
       TERMINAL_NODES.each do |type|
         define_method("visit_#{type}Node") { |o| }
+      end
+
+      BINARY_NODES.each do |type|
+        define_method(:"visit_#{type}Node") do |o|
+          [o.left && o.left.accept(self), o.value && o.value.accept(self)]
+        end
       end
 
       ARRAY_VALUE_NODES.each do |type|
@@ -43,6 +52,26 @@ module Einstein
       
       def visit_UnaryMinusNode(o)
         [:u_minus, super]
+      end
+
+      def visit_MultiplyNode(o)
+        [:multiply, *super]
+      end
+
+      def visit_DivideNode(o)
+        [:divide, *super]
+      end
+
+      def visit_ModulusNode(o)
+        [:modulus, *super]
+      end
+
+      def visit_AddNode(o)
+        [:add, *super]
+      end
+
+      def visit_SubtractNode(o)
+        [:subtract, *super]
       end
     end
   end

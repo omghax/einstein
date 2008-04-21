@@ -29,5 +29,29 @@ module Einstein
 
     class UnaryMinusNode < Node
     end
+
+    class BinaryNode < Node
+      def initialize(left, right)
+        super(right)
+        @left = left
+      end
+
+      attr_reader :left
+    end
+
+    class MultiplyNode < BinaryNode
+    end
+
+    class DivideNode < BinaryNode
+    end
+
+    class ModulusNode < BinaryNode
+    end
+
+    class AddNode < BinaryNode
+    end
+
+    class SubtractNode < BinaryNode
+    end
   end
 end

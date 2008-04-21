@@ -16,13 +16,26 @@ rule
   ;
 
   SourceElement:
+    AdditiveExpr
+  ;
+
+  AdditiveExpr:
+    MultiplicativeExpr
+  | AdditiveExpr "+" MultiplicativeExpr { result = AddNode.new(val[0], val[2]) }
+  | AdditiveExpr "-" MultiplicativeExpr { result = SubtractNode.new(val[0], val[2]) }
+  ;
+
+  MultiplicativeExpr:
     UnaryExpr
+  | MultiplicativeExpr "*" UnaryExpr { result = MultiplyNode.new(val[0], val[2]) }
+  | MultiplicativeExpr "/" UnaryExpr { result = DivideNode.new(val[0], val[2]) }
+  | MultiplicativeExpr "%" UnaryExpr { result = ModulusNode.new(val[0], val[2]) }
   ;
 
   UnaryExpr:
-    "+" UnaryExpr { result = UnaryPlusNode.new(val[1]) }
+    Literal
+  | "+" UnaryExpr { result = UnaryPlusNode.new(val[1]) }
   | "-" UnaryExpr { result = UnaryMinusNode.new(val[1]) }
-  | Literal
   ;
 
   Literal:
