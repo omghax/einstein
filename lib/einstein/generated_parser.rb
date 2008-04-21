@@ -14,77 +14,86 @@ module Einstein
 
   class GeneratedParser < Racc::Parser
 
-module_eval <<'..end lib/parser.y modeval..id588ea0f9d2', 'lib/parser.y', 59
+module_eval <<'..end lib/parser.y modeval..id81db39d2e7', 'lib/parser.y', 60
   include Einstein::Nodes
-..end lib/parser.y modeval..id588ea0f9d2
+..end lib/parser.y modeval..id81db39d2e7
 
 ##### racc 1.4.5 generates ###
 
 racc_reduce_table = [
  0, 0, :racc_error,
- 1, 14, :_reduce_none,
- 2, 14, :_reduce_2,
  1, 15, :_reduce_none,
+ 2, 15, :_reduce_2,
  1, 16, :_reduce_none,
- 3, 16, :_reduce_5,
- 3, 16, :_reduce_6,
  1, 17, :_reduce_none,
- 3, 17, :_reduce_8,
- 3, 17, :_reduce_9,
+ 3, 17, :_reduce_5,
+ 3, 17, :_reduce_6,
  1, 18, :_reduce_none,
- 3, 18, :_reduce_11,
- 3, 18, :_reduce_12,
- 3, 18, :_reduce_13,
+ 3, 18, :_reduce_8,
+ 3, 18, :_reduce_9,
  1, 19, :_reduce_none,
- 2, 19, :_reduce_15,
- 2, 19, :_reduce_16,
- 1, 20, :_reduce_17 ]
+ 3, 19, :_reduce_11,
+ 3, 19, :_reduce_12,
+ 3, 19, :_reduce_13,
+ 1, 20, :_reduce_none,
+ 2, 20, :_reduce_15,
+ 2, 20, :_reduce_16,
+ 2, 20, :_reduce_17,
+ 1, 21, :_reduce_18 ]
 
-racc_reduce_n = 18
+racc_reduce_n = 19
 
-racc_shift_n = 30
+racc_shift_n = 32
 
 racc_action_table = [
-    11,     4,    22,     7,     9,   nil,     4,   nil,     7,     9,
-     4,   nil,     7,     9,     4,   nil,     7,     9,     4,   nil,
-     7,     9,     4,   nil,     7,     9,     4,   nil,     7,     9,
-     4,   nil,     7,     9,     4,   nil,     7,     9,     4,   nil,
-     7,     9,     4,   nil,     7,     9,    19,    17,    18,    19,
-    17,    18,    19,    17,    18,    13,    14,    15,    16,    15,
-    16,    15,    16 ]
+    13,    22,    20,    21,    15,    16,     4,    24,     7,     9,
+    17,    18,     4,     1,     7,     9,    17,    18,     4,     1,
+     7,     9,    17,    18,     4,     1,     7,     9,   nil,   nil,
+     4,     1,     7,     9,   nil,   nil,     4,     1,     7,     9,
+   nil,   nil,     4,     1,     7,     9,   nil,   nil,     4,     1,
+     7,     9,   nil,   nil,     4,     1,     7,     9,   nil,   nil,
+     4,     1,     7,     9,   nil,   nil,     4,     1,     7,     9,
+   nil,   nil,     4,     1,     7,     9,    22,    20,    21,     1,
+    22,    20,    21 ]
 
 racc_action_check = [
-     1,     7,    11,     7,     7,   nil,     1,   nil,     1,     1,
-    19,   nil,    19,    19,    18,   nil,    18,    18,    17,   nil,
-    17,    17,     0,   nil,     0,     0,     9,   nil,     9,     9,
-    16,   nil,    16,    16,    13,   nil,    13,    13,    15,   nil,
-    15,    15,    14,   nil,    14,    14,    26,    26,    26,     6,
-     6,     6,    25,    25,    25,     3,     3,     5,     5,    24,
-    24,    23,    23 ]
+     2,    28,    28,    28,     5,     5,     2,    13,     2,     2,
+     6,     6,     7,     2,     7,     7,    26,    26,     0,     7,
+     0,     0,    25,    25,    22,     0,    22,    22,   nil,   nil,
+    21,    22,    21,    21,   nil,   nil,     1,    21,     1,     1,
+   nil,   nil,    20,     1,    20,    20,   nil,   nil,     9,    20,
+     9,     9,   nil,   nil,    18,     9,    18,    18,   nil,   nil,
+    15,    18,    15,    15,   nil,   nil,    17,    15,    17,    17,
+   nil,   nil,    16,    17,    16,    16,     8,     8,     8,    16,
+    27,    27,    27 ]
 
 racc_action_pointer = [
-    16,     0,   nil,    51,   nil,    49,    39,    -5,   nil,    20,
-   nil,     2,   nil,    28,    36,    32,    24,    12,     8,     4,
-   nil,   nil,   nil,    53,    51,    42,    36,   nil,   nil,   nil ]
+    12,    30,     0,   nil,   nil,     0,     2,     6,    66,    42,
+   nil,   nil,   nil,     7,   nil,    54,    66,    60,    48,   nil,
+    36,    24,    18,   nil,   nil,    14,     8,    70,    -9,   nil,
+   nil,   nil ]
 
 racc_action_default = [
-   -18,   -18,    -1,    -3,   -17,    -4,    -7,   -18,   -10,   -18,
-   -14,   -18,    -2,   -18,   -18,   -18,   -18,   -18,   -18,   -18,
-   -15,   -16,    30,    -5,    -6,    -8,    -9,   -12,   -13,   -11 ]
+   -19,   -19,   -19,    -1,   -18,    -3,    -4,   -19,    -7,   -19,
+   -10,   -14,   -17,   -19,    -2,   -19,   -19,   -19,   -19,   -15,
+   -19,   -19,   -19,   -16,    32,    -5,    -6,    -8,    -9,   -12,
+   -13,   -11 ]
 
 racc_goto_table = [
-    20,     1,    21,     2,    12,    25,    26,    23,    24,   nil,
-    27,    28,    29 ]
+    12,     3,     2,    14,    27,    28,    19,   nil,    23,    25,
+    26,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,    29,
+    30,    31 ]
 
 racc_goto_check = [
-     6,     1,     6,     2,     2,     5,     5,     4,     4,   nil,
-     6,     6,     6 ]
+     6,     2,     1,     2,     5,     5,     6,   nil,     6,     4,
+     4,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,     6,
+     6,     6 ]
 
 racc_goto_pointer = [
-   nil,     1,     3,   nil,    -6,   -10,    -7,   nil ]
+   nil,     2,     1,   nil,    -6,   -13,    -1,   nil ]
 
 racc_goto_default = [
-   nil,   nil,   nil,     3,     5,     6,     8,    10 ]
+   nil,   nil,   nil,     5,     6,     8,    10,    11 ]
 
 racc_token_table = {
  false => 0,
@@ -99,11 +108,12 @@ racc_token_table = {
  "-" => 9,
  "*" => 10,
  "/" => 11,
- "%" => 12 }
+ "%" => 12,
+ "~" => 13 }
 
 racc_use_result_var = true
 
-racc_nt_base = 13
+racc_nt_base = 14
 
 Racc_arg = [
  racc_action_table,
@@ -135,6 +145,7 @@ Racc_token_to_s_table = [
 '"*"',
 '"/"',
 '"%"',
+'"~"',
 '$start',
 'SourceElements',
 'SourceElement',
@@ -232,8 +243,15 @@ module_eval <<'.,.,', 'lib/parser.y', 47
   end
 .,.,
 
-module_eval <<'.,.,', 'lib/parser.y', 51
+module_eval <<'.,.,', 'lib/parser.y', 48
   def _reduce_17( val, _values, result )
+ result = BitwiseNotNode.new(val[1])
+   result
+  end
+.,.,
+
+module_eval <<'.,.,', 'lib/parser.y', 52
+  def _reduce_18( val, _values, result )
  result = NumberNode.new(val.first)
    result
   end

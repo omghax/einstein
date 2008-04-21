@@ -46,6 +46,7 @@ rule
     Literal
   | "+" UnaryExpr { result = UnaryPlusNode.new(val[1]) }
   | "-" UnaryExpr { result = UnaryMinusNode.new(val[1]) }
+  | "~" UnaryExpr { result = BitwiseNotNode.new(val[1]) }
   ;
 
   Literal:

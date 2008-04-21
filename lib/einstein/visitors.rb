@@ -5,7 +5,7 @@ module Einstein
         Number
       }
       SINGLE_VALUE_NODES = %w{
-        UnaryMinus UnaryPlus
+        BitwiseNot UnaryMinus UnaryPlus
       }
       BINARY_NODES = %w{
         Add Divide LeftShift Modulus Multiply RightShift Subtract
@@ -52,6 +52,10 @@ module Einstein
       
       def visit_UnaryMinusNode(o)
         [:u_minus, super]
+      end
+
+      def visit_BitwiseNotNode(o)
+        [:bitwise_not, super]
       end
 
       def visit_MultiplyNode(o)

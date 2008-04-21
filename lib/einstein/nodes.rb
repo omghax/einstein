@@ -30,6 +30,9 @@ module Einstein
     class UnaryMinusNode < Node
     end
 
+    class BitwiseNotNode < Node
+    end
+
     class BinaryNode < Node
       def initialize(left, right)
         super(right)

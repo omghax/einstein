@@ -42,6 +42,10 @@ class TestParser < Test::Unit::TestCase
     assert_sexp([[:multiply, [:lit, 5], [:lit, 10]]], @parser.parse("5 * 10"))
   end
 
+  def test_unary_bitwise_not
+    assert_sexp([[:bitwise_not, [:lit, 10]]], @parser.parse("~10"))
+  end
+
   def test_float_scientific
     # Unsigned number, unsigned exponent, lowercase e
     assert_sexp([[:lit, 1.0e1]], @parser.parse("1.0e1"))
