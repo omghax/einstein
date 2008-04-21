@@ -62,81 +62,41 @@ class TestParser < Test::Unit::TestCase
     assert_sexp([[:bitwise_not, [:lit, 10]]], @parser.parse("~10"))
   end
 
+  def test_unary_minus
+    assert_sexp([[:u_minus, [:lit, 10]]], @parser.parse("-10"))
+  end
+
+  def test_unary_plus
+    assert_sexp([[:u_plus, [:lit, 10]]], @parser.parse("+10"))
+  end
+
   def test_float_scientific
-    # Unsigned number, unsigned exponent, lowercase e
+    # Unsigned exponent, lowercase e
     assert_sexp([[:lit, 1.0e1]], @parser.parse("1.0e1"))
     assert_sexp([[:lit, 1.1e2]], @parser.parse("1.1e2"))
     assert_sexp([[:lit, 10.10e3]], @parser.parse("10.10e3"))
-    # Unsigned number, positive exponent, lowercase e
-    assert_sexp([[:lit, 1.0e+1]], @parser.parse("1.0e+1"))
-    assert_sexp([[:lit, 1.1e+2]], @parser.parse("1.1e+2"))
-    assert_sexp([[:lit, 10.10e+3]], @parser.parse("10.10e+3"))
-    # Unsigned number, negative exponent, lowercase e
-    assert_sexp([[:lit, 1.0e-1]], @parser.parse("1.0e-1"))
-    assert_sexp([[:lit, 1.1e-2]], @parser.parse("1.1e-2"))
-    assert_sexp([[:lit, 10.10e-3]], @parser.parse("10.10e-3"))
-    # Unsigned number, unsigned exponent, uppercase e
+    # Unsigned exponent, uppercase e
     assert_sexp([[:lit, 1.0E1]], @parser.parse("1.0E1"))
     assert_sexp([[:lit, 1.1E2]], @parser.parse("1.1E2"))
     assert_sexp([[:lit, 10.10E3]], @parser.parse("10.10E3"))
-    # Unsigned number, positive exponent, uppercase e
+
+    # Positive exponent, lowercase e
+    assert_sexp([[:lit, 1.0e+1]], @parser.parse("1.0e+1"))
+    assert_sexp([[:lit, 1.1e+2]], @parser.parse("1.1e+2"))
+    assert_sexp([[:lit, 10.10e+3]], @parser.parse("10.10e+3"))
+    # Positive exponent, uppercase e
     assert_sexp([[:lit, 1.0E+1]], @parser.parse("1.0E+1"))
     assert_sexp([[:lit, 1.1E+2]], @parser.parse("1.1E+2"))
     assert_sexp([[:lit, 10.10E+3]], @parser.parse("10.10E+3"))
-    # Unsigned number, negative exponent, uppercase e
+
+    # Negative exponent, lowercase e
+    assert_sexp([[:lit, 1.0e-1]], @parser.parse("1.0e-1"))
+    assert_sexp([[:lit, 1.1e-2]], @parser.parse("1.1e-2"))
+    assert_sexp([[:lit, 10.10e-3]], @parser.parse("10.10e-3"))
+    # Negative exponent, uppercase e
     assert_sexp([[:lit, 1.0E-1]], @parser.parse("1.0E-1"))
     assert_sexp([[:lit, 1.1E-2]], @parser.parse("1.1E-2"))
     assert_sexp([[:lit, 10.10E-3]], @parser.parse("10.10E-3"))
-
-    # Positive number, unsigned exponent, lowercase e
-    assert_sexp([[:u_plus, [:lit, 1.0e1]]], @parser.parse("+1.0e1"))
-    assert_sexp([[:u_plus, [:lit, 1.1e2]]], @parser.parse("+1.1e2"))
-    assert_sexp([[:u_plus, [:lit, 10.10e3]]], @parser.parse("+10.10e3"))
-    # Positive number, positive exponent, lowercase e
-    assert_sexp([[:u_plus, [:lit, 1.0e+1]]], @parser.parse("+1.0e+1"))
-    assert_sexp([[:u_plus, [:lit, 1.1e+2]]], @parser.parse("+1.1e+2"))
-    assert_sexp([[:u_plus, [:lit, 10.10e+3]]], @parser.parse("+10.10e+3"))
-    # Positive number, negative exponent, lowercase e
-    assert_sexp([[:u_plus, [:lit, 1.0e-1]]], @parser.parse("+1.0e-1"))
-    assert_sexp([[:u_plus, [:lit, 1.1e-2]]], @parser.parse("+1.1e-2"))
-    assert_sexp([[:u_plus, [:lit, 10.10e-3]]], @parser.parse("+10.10e-3"))
-    # Positive number, unsigned exponent, uppercase e
-    assert_sexp([[:u_plus, [:lit, 1.0E1]]], @parser.parse("+1.0E1"))
-    assert_sexp([[:u_plus, [:lit, 1.1E2]]], @parser.parse("+1.1E2"))
-    assert_sexp([[:u_plus, [:lit, 10.10E3]]], @parser.parse("+10.10E3"))
-    # Positive number, positive exponent, uppercase e
-    assert_sexp([[:u_plus, [:lit, 1.0E+1]]], @parser.parse("+1.0E+1"))
-    assert_sexp([[:u_plus, [:lit, 1.1E+2]]], @parser.parse("+1.1E+2"))
-    assert_sexp([[:u_plus, [:lit, 10.10E+3]]], @parser.parse("+10.10E+3"))
-    # Positive number, negative exponent, uppercase e
-    assert_sexp([[:u_plus, [:lit, 1.0E-1]]], @parser.parse("+1.0E-1"))
-    assert_sexp([[:u_plus, [:lit, 1.1E-2]]], @parser.parse("+1.1E-2"))
-    assert_sexp([[:u_plus, [:lit, 10.10E-3]]], @parser.parse("+10.10E-3"))
-
-    # Negative number, unsigned exponent, lowercase e
-    assert_sexp([[:u_minus, [:lit, 1.0e1]]], @parser.parse("-1.0e1"))
-    assert_sexp([[:u_minus, [:lit, 1.1e2]]], @parser.parse("-1.1e2"))
-    assert_sexp([[:u_minus, [:lit, 10.10e3]]], @parser.parse("-10.10e3"))
-    # Negative number, positive exponent, lowercase e
-    assert_sexp([[:u_minus, [:lit, 1.0e+1]]], @parser.parse("-1.0e+1"))
-    assert_sexp([[:u_minus, [:lit, 1.1e+2]]], @parser.parse("-1.1e+2"))
-    assert_sexp([[:u_minus, [:lit, 10.10e+3]]], @parser.parse("-10.10e+3"))
-    # Negative number, negative exponent, lowercase e
-    assert_sexp([[:u_minus, [:lit, 1.0e-1]]], @parser.parse("-1.0e-1"))
-    assert_sexp([[:u_minus, [:lit, 1.1e-2]]], @parser.parse("-1.1e-2"))
-    assert_sexp([[:u_minus, [:lit, 10.10e-3]]], @parser.parse("-10.10e-3"))
-    # Negative number, unsigned exponent, uppercase e
-    assert_sexp([[:u_minus, [:lit, 1.0E1]]], @parser.parse("-1.0E1"))
-    assert_sexp([[:u_minus, [:lit, 1.1E2]]], @parser.parse("-1.1E2"))
-    assert_sexp([[:u_minus, [:lit, 10.10E3]]], @parser.parse("-10.10E3"))
-    # Negative number, positive exponent, uppercase e
-    assert_sexp([[:u_minus, [:lit, 1.0E+1]]], @parser.parse("-1.0E+1"))
-    assert_sexp([[:u_minus, [:lit, 1.1E+2]]], @parser.parse("-1.1E+2"))
-    assert_sexp([[:u_minus, [:lit, 10.10E+3]]], @parser.parse("-10.10E+3"))
-    # Negative number, negative exponent, uppercase e
-    assert_sexp([[:u_minus, [:lit, 1.0E-1]]], @parser.parse("-1.0E-1"))
-    assert_sexp([[:u_minus, [:lit, 1.1E-2]]], @parser.parse("-1.1E-2"))
-    assert_sexp([[:u_minus, [:lit, 10.10E-3]]], @parser.parse("-10.10E-3"))
   end
 
   def test_float
