@@ -84,6 +84,7 @@ module Einstein
       end
 
       def visit_ResolveNode(o)
+        raise ResolveError, "undefined variable: #{o.value}" unless @scope.has_key?(o.value.to_sym)
         @scope[o.value.to_sym]
       end
     end

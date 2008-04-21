@@ -13,7 +13,7 @@ module Einstein
 
       attr_accessor :value
 
-      def eval(scope)
+      def eval(scope = {})
         EvalVisitor.new(scope).accept(self)
       end
 

@@ -7,6 +7,10 @@ class TestEval < Test::Unit::TestCase
     @parser.logger = Logger.new(STDERR)
   end
 
+  def test_resolve_should_raise_on_undefined_variable
+    assert_raises(Einstein::ResolveError) { @parser.parse("x").eval({}) }
+  end
+
   def test_resolve
     assert_eval(5, "x", :x => 5)
     assert_eval(10, "x + 5", :x => 5)
