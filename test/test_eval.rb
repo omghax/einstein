@@ -7,6 +7,11 @@ class TestEval < Test::Unit::TestCase
     @parser.logger = Logger.new(STDERR)
   end
 
+  def test_order_of_operations
+    assert_eval(11, "3 + 4 * 2")
+    assert_eval(23, "7 + 9 * 2 - 16 / 8")
+  end
+
   def test_resolve_should_raise_on_undefined_variable
     assert_raises(Einstein::ResolveError) { @parser.parse("x").eval({}) }
   end
