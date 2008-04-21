@@ -13,6 +13,10 @@ module Einstein
 
       attr_accessor :value
 
+      def eval(scope)
+        EvalVisitor.new(scope).accept(self)
+      end
+
       def to_sexp
         SexpVisitor.new.accept(self)
       end
