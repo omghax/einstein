@@ -5,6 +5,10 @@ class Einstein::GeneratedParser
 /* Literals */
 token TRUE FALSE
 
+/* punctuators */
+token LSHIFT  /* << */
+token RSHIFT  /* >> */
+
 /* Terminal types */
 token NUMBER
 token IDENT
@@ -16,7 +20,13 @@ rule
   ;
 
   SourceElement:
+    ShiftExpr
+  ;
+
+  ShiftExpr:
     AdditiveExpr
+  | ShiftExpr LSHIFT AdditiveExpr { result = LeftShiftNode.new(val[0], val[2]) }
+  | ShiftExpr RSHIFT AdditiveExpr { result = RightShiftNode.new(val[0], val[2]) }
   ;
 
   AdditiveExpr:

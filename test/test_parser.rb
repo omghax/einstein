@@ -1,8 +1,20 @@
 require File.dirname(__FILE__) + "/test_helper"
+require "logger"
 
 class TestParser < Test::Unit::TestCase
   def setup
     @parser = Einstein::Parser.new
+    @parser.logger = Logger.new(STDERR)
+  end
+
+  def test_rshift
+    assert_sexp([[:rshift, [:lit, 2], [:lit, 3]]], @parser.parse("2>>3"))
+    assert_sexp([[:rshift, [:lit, 2], [:lit, 3]]], @parser.parse("2 >> 3"))
+  end
+
+  def test_lshift
+    assert_sexp([[:lshift, [:lit, 2], [:lit, 3]]], @parser.parse("2<<3"))
+    assert_sexp([[:lshift, [:lit, 2], [:lit, 3]]], @parser.parse("2 << 3"))
   end
 
   def test_subtraction

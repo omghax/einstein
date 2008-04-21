@@ -2,6 +2,12 @@ require "einstein/lexeme"
 
 module Einstein
   class Tokenizer
+    LITERALS = {
+      # Punctuators
+      "<<" => :LSHIFT,
+      ">>" => :RSHIFT
+    }
+
     def initialize(&block)
       @lexemes = []
 
@@ -16,6 +22,12 @@ module Einstein
       end
       token(:NUMBER, /\A0[bBxX][\da-fA-F]+|\A0[0-7]*|\A\d+/) do |type, value|
         [type, eval(value)]
+      end
+
+      token(:LITERALS,
+        Regexp.new(LITERALS.keys.sort_by { |x| x.length }.reverse.map { |x| "\\A#{x.gsub(/([|+*^])/, '\\\\\1')}" }.join('|')
+      )) do |type, value|
+        [LITERALS[value], value]
       end
 
       token(:WS, /\A[\s\r\n]*/m)

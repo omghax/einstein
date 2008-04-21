@@ -8,7 +8,7 @@ module Einstein
         UnaryMinus UnaryPlus
       }
       BINARY_NODES = %w{
-        Add Divide Modulus Multiply Subtract
+        Add Divide LeftShift Modulus Multiply RightShift Subtract
       }
       ARRAY_VALUE_NODES = %w{
         SourceElements
@@ -72,6 +72,14 @@ module Einstein
 
       def visit_SubtractNode(o)
         [:subtract, *super]
+      end
+
+      def visit_LeftShiftNode(o)
+        [:lshift, *super]
+      end
+
+      def visit_RightShiftNode(o)
+        [:rshift, *super]
       end
     end
   end

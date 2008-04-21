@@ -53,5 +53,11 @@ module Einstein
 
     class SubtractNode < BinaryNode
     end
+
+    class LeftShiftNode < BinaryNode
+    end
+
+    class RightShiftNode < BinaryNode
+    end
   end
 end
