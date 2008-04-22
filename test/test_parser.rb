@@ -7,6 +7,24 @@ class TestParser < Test::Unit::TestCase
     @parser.logger = Logger.new(STDERR)
   end
 
+  def test_parentheses
+    assert_equal [
+      [:multiply, 
+        [:add, [:lit, 5], [:lit, 2]],
+        [:subtract, [:lit, 10], [:lit, 5]]
+      ]], parse("(5 + 2) * (10 - 5)").to_sexp
+  end
+
+  def test_order_of_operations
+    assert_equal [
+      [:subtract,
+        [:add,
+          [:divide, [:lit, 6], [:lit, 3]],
+          [:multiply, [:lit, 4], [:lit, 2]]],
+        [:lit, 5]
+      ]], parse("6 / 3 + 4 * 2 - 5").to_sexp
+  end
+
   def test_resolve
     assert_equal [[:resolve, "x"]], parse("x").to_sexp
   end
