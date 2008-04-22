@@ -139,7 +139,7 @@ class TestParser < Test::Unit::TestCase
     assert_equal [[:u_minus, [:lit, 0B1010]]], parse("-0B1010").to_sexp
   end
 
-  def test_number_base8
+  def test_number_base16
     # Unsigned, lowercase x
     assert_equal [[:lit, 0x0]], parse("0x0").to_sexp
     assert_equal [[:lit, 0xaa]], parse("0xaa").to_sexp

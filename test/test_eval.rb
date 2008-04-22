@@ -86,7 +86,7 @@ class TestEval < Test::Unit::TestCase
     assert_equal -0B1010, parse("-0B1010").eval
   end
 
-  def test_number_base8
+  def test_number_base16
     # Unsigned
     assert_equal 0x0, parse("0x0").eval
     assert_equal 0xff, parse("0xff").eval
