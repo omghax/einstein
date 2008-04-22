@@ -8,180 +8,180 @@ class TestParser < Test::Unit::TestCase
   end
 
   def test_resolve
-    assert_sexp([[:resolve, "x"]], @parser.parse("x"))
+    assert_equal [[:resolve, "x"]], parse("x").to_sexp
   end
 
   def test_bitwise_or
-    assert_sexp([[:bitwise_or, [:lit, 5], [:lit, 10]]], @parser.parse("5 | 10"))
+    assert_equal [[:bitwise_or, [:lit, 5], [:lit, 10]]], parse("5 | 10").to_sexp
   end
 
   def test_bitwise_xor
-    assert_sexp([[:bitwise_xor, [:lit, 5], [:lit, 10]]], @parser.parse("5 ^ 10"))
+    assert_equal [[:bitwise_xor, [:lit, 5], [:lit, 10]]], parse("5 ^ 10").to_sexp
   end
 
   def test_bitwise_and
-    assert_sexp([[:bitwise_and, [:lit, 5], [:lit, 10]]], @parser.parse("5 & 10"))
+    assert_equal [[:bitwise_and, [:lit, 5], [:lit, 10]]], parse("5 & 10").to_sexp
   end
 
   def test_rshift
-    assert_sexp([[:rshift, [:lit, 2], [:lit, 3]]], @parser.parse("2>>3"))
-    assert_sexp([[:rshift, [:lit, 2], [:lit, 3]]], @parser.parse("2 >> 3"))
+    assert_equal [[:rshift, [:lit, 2], [:lit, 3]]], parse("2>>3").to_sexp
+    assert_equal [[:rshift, [:lit, 2], [:lit, 3]]], parse("2 >> 3").to_sexp
   end
 
   def test_lshift
-    assert_sexp([[:lshift, [:lit, 2], [:lit, 3]]], @parser.parse("2<<3"))
-    assert_sexp([[:lshift, [:lit, 2], [:lit, 3]]], @parser.parse("2 << 3"))
+    assert_equal [[:lshift, [:lit, 2], [:lit, 3]]], parse("2<<3").to_sexp
+    assert_equal [[:lshift, [:lit, 2], [:lit, 3]]], parse("2 << 3").to_sexp
   end
 
   def test_subtraction
-    assert_sexp([[:subtract, [:lit, 2], [:lit, 1]]], @parser.parse("2-1"))
-    assert_sexp([[:subtract, [:lit, 2], [:lit, 1]]], @parser.parse("2 - 1"))
+    assert_equal [[:subtract, [:lit, 2], [:lit, 1]]], parse("2-1").to_sexp
+    assert_equal [[:subtract, [:lit, 2], [:lit, 1]]], parse("2 - 1").to_sexp
   end
 
   def test_addition
-    assert_sexp([[:add, [:lit, 1], [:lit, 2]]], @parser.parse("1+2"))
-    assert_sexp([[:add, [:lit, 1], [:lit, 2]]], @parser.parse("1 + 2"))
+    assert_equal [[:add, [:lit, 1], [:lit, 2]]], parse("1+2").to_sexp
+    assert_equal [[:add, [:lit, 1], [:lit, 2]]], parse("1 + 2").to_sexp
   end
 
   def test_modulus
-    assert_sexp([[:modulus, [:lit, 10], [:lit, 5]]], @parser.parse("10%5"))
-    assert_sexp([[:modulus, [:lit, 10], [:lit, 5]]], @parser.parse("10 % 5"))
+    assert_equal [[:modulus, [:lit, 10], [:lit, 5]]], parse("10%5").to_sexp
+    assert_equal [[:modulus, [:lit, 10], [:lit, 5]]], parse("10 % 5").to_sexp
   end
 
   def test_division
-    assert_sexp([[:divide, [:lit, 10], [:lit, 5]]], @parser.parse("10/5"))
-    assert_sexp([[:divide, [:lit, 10], [:lit, 5]]], @parser.parse("10 / 5"))
+    assert_equal [[:divide, [:lit, 10], [:lit, 5]]], parse("10/5").to_sexp
+    assert_equal [[:divide, [:lit, 10], [:lit, 5]]], parse("10 / 5").to_sexp
   end
 
   def test_multiplication
-    assert_sexp([[:multiply, [:lit, 5], [:lit, 10]]], @parser.parse("5*10"))
-    assert_sexp([[:multiply, [:lit, 5], [:lit, 10]]], @parser.parse("5 * 10"))
+    assert_equal [[:multiply, [:lit, 5], [:lit, 10]]], parse("5*10").to_sexp
+    assert_equal [[:multiply, [:lit, 5], [:lit, 10]]], parse("5 * 10").to_sexp
   end
 
   def test_unary_bitwise_not
-    assert_sexp([[:bitwise_not, [:lit, 10]]], @parser.parse("~10"))
+    assert_equal [[:bitwise_not, [:lit, 10]]], parse("~10").to_sexp
   end
 
   def test_unary_minus
-    assert_sexp([[:u_minus, [:lit, 10]]], @parser.parse("-10"))
+    assert_equal [[:u_minus, [:lit, 10]]], parse("-10").to_sexp
   end
 
   def test_unary_plus
-    assert_sexp([[:u_plus, [:lit, 10]]], @parser.parse("+10"))
+    assert_equal [[:u_plus, [:lit, 10]]], parse("+10").to_sexp
   end
 
   def test_float_scientific
     # Unsigned exponent, lowercase e
-    assert_sexp([[:lit, 1.0e1]], @parser.parse("1.0e1"))
-    assert_sexp([[:lit, 1.1e2]], @parser.parse("1.1e2"))
-    assert_sexp([[:lit, 10.10e3]], @parser.parse("10.10e3"))
+    assert_equal [[:lit, 1.0e1]], parse("1.0e1").to_sexp
+    assert_equal [[:lit, 1.1e2]], parse("1.1e2").to_sexp
+    assert_equal [[:lit, 10.10e3]], parse("10.10e3").to_sexp
     # Unsigned exponent, uppercase e
-    assert_sexp([[:lit, 1.0E1]], @parser.parse("1.0E1"))
-    assert_sexp([[:lit, 1.1E2]], @parser.parse("1.1E2"))
-    assert_sexp([[:lit, 10.10E3]], @parser.parse("10.10E3"))
+    assert_equal [[:lit, 1.0E1]], parse("1.0E1").to_sexp
+    assert_equal [[:lit, 1.1E2]], parse("1.1E2").to_sexp
+    assert_equal [[:lit, 10.10E3]], parse("10.10E3").to_sexp
 
     # Positive exponent, lowercase e
-    assert_sexp([[:lit, 1.0e+1]], @parser.parse("1.0e+1"))
-    assert_sexp([[:lit, 1.1e+2]], @parser.parse("1.1e+2"))
-    assert_sexp([[:lit, 10.10e+3]], @parser.parse("10.10e+3"))
+    assert_equal [[:lit, 1.0e+1]], parse("1.0e+1").to_sexp
+    assert_equal [[:lit, 1.1e+2]], parse("1.1e+2").to_sexp
+    assert_equal [[:lit, 10.10e+3]], parse("10.10e+3").to_sexp
     # Positive exponent, uppercase e
-    assert_sexp([[:lit, 1.0E+1]], @parser.parse("1.0E+1"))
-    assert_sexp([[:lit, 1.1E+2]], @parser.parse("1.1E+2"))
-    assert_sexp([[:lit, 10.10E+3]], @parser.parse("10.10E+3"))
+    assert_equal [[:lit, 1.0E+1]], parse("1.0E+1").to_sexp
+    assert_equal [[:lit, 1.1E+2]], parse("1.1E+2").to_sexp
+    assert_equal [[:lit, 10.10E+3]], parse("10.10E+3").to_sexp
 
     # Negative exponent, lowercase e
-    assert_sexp([[:lit, 1.0e-1]], @parser.parse("1.0e-1"))
-    assert_sexp([[:lit, 1.1e-2]], @parser.parse("1.1e-2"))
-    assert_sexp([[:lit, 10.10e-3]], @parser.parse("10.10e-3"))
+    assert_equal [[:lit, 1.0e-1]], parse("1.0e-1").to_sexp
+    assert_equal [[:lit, 1.1e-2]], parse("1.1e-2").to_sexp
+    assert_equal [[:lit, 10.10e-3]], parse("10.10e-3").to_sexp
     # Negative exponent, uppercase e
-    assert_sexp([[:lit, 1.0E-1]], @parser.parse("1.0E-1"))
-    assert_sexp([[:lit, 1.1E-2]], @parser.parse("1.1E-2"))
-    assert_sexp([[:lit, 10.10E-3]], @parser.parse("10.10E-3"))
+    assert_equal [[:lit, 1.0E-1]], parse("1.0E-1").to_sexp
+    assert_equal [[:lit, 1.1E-2]], parse("1.1E-2").to_sexp
+    assert_equal [[:lit, 10.10E-3]], parse("10.10E-3").to_sexp
   end
 
   def test_float
     # Unsigned
-    assert_sexp([[:lit, 0.0]], @parser.parse("0.0"))
-    assert_sexp([[:lit, 1.1]], @parser.parse("1.1"))
-    assert_sexp([[:lit, 10.10]], @parser.parse("10.10"))
+    assert_equal [[:lit, 0.0]], parse("0.0").to_sexp
+    assert_equal [[:lit, 1.1]], parse("1.1").to_sexp
+    assert_equal [[:lit, 10.10]], parse("10.10").to_sexp
 
     # Positive
-    assert_sexp([[:u_plus, [:lit, 1.1]]], @parser.parse("+1.1"))
-    assert_sexp([[:u_plus, [:lit, 10.10]]], @parser.parse("+10.10"))
+    assert_equal [[:u_plus, [:lit, 1.1]]], parse("+1.1").to_sexp
+    assert_equal [[:u_plus, [:lit, 10.10]]], parse("+10.10").to_sexp
 
     # Negative
-    assert_sexp([[:u_minus, [:lit, 1.1]]], @parser.parse("-1.1"))
-    assert_sexp([[:u_minus, [:lit, 10.10]]], @parser.parse("-10.10"))
+    assert_equal [[:u_minus, [:lit, 1.1]]], parse("-1.1").to_sexp
+    assert_equal [[:u_minus, [:lit, 10.10]]], parse("-10.10").to_sexp
   end
 
   def test_number_base2
     # Unsigned, lowercase b
-    assert_sexp([[:lit, 0b0000]], @parser.parse("0b0"))
-    assert_sexp([[:lit, 0b1111]], @parser.parse("0b1111"))
-    assert_sexp([[:lit, 0b1010]], @parser.parse("0b1010"))
+    assert_equal [[:lit, 0b0000]], parse("0b0").to_sexp
+    assert_equal [[:lit, 0b1111]], parse("0b1111").to_sexp
+    assert_equal [[:lit, 0b1010]], parse("0b1010").to_sexp
     # Unsigned, uppercase b
-    assert_sexp([[:lit, 0B0000]], @parser.parse("0B0"))
-    assert_sexp([[:lit, 0B1111]], @parser.parse("0B1111"))
-    assert_sexp([[:lit, 0B1010]], @parser.parse("0B1010"))
+    assert_equal [[:lit, 0B0000]], parse("0B0").to_sexp
+    assert_equal [[:lit, 0B1111]], parse("0B1111").to_sexp
+    assert_equal [[:lit, 0B1010]], parse("0B1010").to_sexp
 
     # Positive, lowercase b
-    assert_sexp([[:u_plus, [:lit, 0b1111]]], @parser.parse("+0b1111"))
-    assert_sexp([[:u_plus, [:lit, 0b1010]]], @parser.parse("+0b1010"))
+    assert_equal [[:u_plus, [:lit, 0b1111]]], parse("+0b1111").to_sexp
+    assert_equal [[:u_plus, [:lit, 0b1010]]], parse("+0b1010").to_sexp
     # Positive, uppercase b
-    assert_sexp([[:u_plus, [:lit, 0B1111]]], @parser.parse("+0B1111"))
-    assert_sexp([[:u_plus, [:lit, 0B1010]]], @parser.parse("+0B1010"))
+    assert_equal [[:u_plus, [:lit, 0B1111]]], parse("+0B1111").to_sexp
+    assert_equal [[:u_plus, [:lit, 0B1010]]], parse("+0B1010").to_sexp
 
     # Negative, lowercase b
-    assert_sexp([[:u_minus, [:lit, 0b1111]]], @parser.parse("-0b1111"))
-    assert_sexp([[:u_minus, [:lit, 0b1010]]], @parser.parse("-0b1010"))
+    assert_equal [[:u_minus, [:lit, 0b1111]]], parse("-0b1111").to_sexp
+    assert_equal [[:u_minus, [:lit, 0b1010]]], parse("-0b1010").to_sexp
     # Negative, uppercase b
-    assert_sexp([[:u_minus, [:lit, 0B1111]]], @parser.parse("-0B1111"))
-    assert_sexp([[:u_minus, [:lit, 0B1010]]], @parser.parse("-0B1010"))
+    assert_equal [[:u_minus, [:lit, 0B1111]]], parse("-0B1111").to_sexp
+    assert_equal [[:u_minus, [:lit, 0B1010]]], parse("-0B1010").to_sexp
   end
 
   def test_number_base8
     # Unsigned, lowercase x
-    assert_sexp([[:lit, 0x0]], @parser.parse("0x0"))
-    assert_sexp([[:lit, 0xaa]], @parser.parse("0xaa"))
-    assert_sexp([[:lit, 0xFF]], @parser.parse("0xFF"))
+    assert_equal [[:lit, 0x0]], parse("0x0").to_sexp
+    assert_equal [[:lit, 0xaa]], parse("0xaa").to_sexp
+    assert_equal [[:lit, 0xFF]], parse("0xFF").to_sexp
     # Unsigned, uppercase x
-    assert_sexp([[:lit, 0x0]], @parser.parse("0X0"))
-    assert_sexp([[:lit, 0xaa]], @parser.parse("0Xaa"))
-    assert_sexp([[:lit, 0xFF]], @parser.parse("0XFF"))
+    assert_equal [[:lit, 0x0]], parse("0X0").to_sexp
+    assert_equal [[:lit, 0xaa]], parse("0Xaa").to_sexp
+    assert_equal [[:lit, 0xFF]], parse("0XFF").to_sexp
 
     # Positive, lowercase x
-    assert_sexp([[:u_plus, [:lit, 0xaa]]], @parser.parse("+0xaa"))
-    assert_sexp([[:u_plus, [:lit, 0xFF]]], @parser.parse("+0xFF"))
+    assert_equal [[:u_plus, [:lit, 0xaa]]], parse("+0xaa").to_sexp
+    assert_equal [[:u_plus, [:lit, 0xFF]]], parse("+0xFF").to_sexp
     # Positive, uppercase x
-    assert_sexp([[:u_plus, [:lit, 0xaa]]], @parser.parse("+0Xaa"))
-    assert_sexp([[:u_plus, [:lit, 0xFF]]], @parser.parse("+0XFF"))
+    assert_equal [[:u_plus, [:lit, 0xaa]]], parse("+0Xaa").to_sexp
+    assert_equal [[:u_plus, [:lit, 0xFF]]], parse("+0XFF").to_sexp
 
     # Negative, lowercase x
-    assert_sexp([[:u_minus, [:lit, 0xaa]]], @parser.parse("-0xaa"))
-    assert_sexp([[:u_minus, [:lit, 0xFF]]], @parser.parse("-0xFF"))
+    assert_equal [[:u_minus, [:lit, 0xaa]]], parse("-0xaa").to_sexp
+    assert_equal [[:u_minus, [:lit, 0xFF]]], parse("-0xFF").to_sexp
     # Negative, uppercase x
-    assert_sexp([[:u_minus, [:lit, 0xaa]]], @parser.parse("-0Xaa"))
-    assert_sexp([[:u_minus, [:lit, 0xFF]]], @parser.parse("-0XFF"))
+    assert_equal [[:u_minus, [:lit, 0xaa]]], parse("-0Xaa").to_sexp
+    assert_equal [[:u_minus, [:lit, 0xFF]]], parse("-0XFF").to_sexp
   end
 
   def test_number_base10
     # Unsigned
-    assert_sexp([[:lit, 0]], @parser.parse("0"))
-    assert_sexp([[:lit, 1]], @parser.parse("01"))
-    assert_sexp([[:lit, 10]], @parser.parse("10"))
+    assert_equal [[:lit, 0]], parse("0").to_sexp
+    assert_equal [[:lit, 1]], parse("01").to_sexp
+    assert_equal [[:lit, 10]], parse("10").to_sexp
 
     # Positive
-    assert_sexp([[:u_plus, [:lit, 1]]], @parser.parse("+1"))
-    assert_sexp([[:u_plus, [:lit, 10]]], @parser.parse("+10"))
+    assert_equal [[:u_plus, [:lit, 1]]], parse("+1").to_sexp
+    assert_equal [[:u_plus, [:lit, 10]]], parse("+10").to_sexp
 
     # Negative
-    assert_sexp([[:u_minus, [:lit, 1]]], @parser.parse("-1"))
-    assert_sexp([[:u_minus, [:lit, 10]]], @parser.parse("-10"))
+    assert_equal [[:u_minus, [:lit, 1]]], parse("-1").to_sexp
+    assert_equal [[:u_minus, [:lit, 10]]], parse("-10").to_sexp
   end
 
   private
 
-  def assert_sexp(expected, node)
-    assert_equal(expected, node.to_sexp)
+  def parse(stmt)
+    @parser.parse(stmt)
   end
 end
