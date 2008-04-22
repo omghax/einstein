@@ -14,12 +14,7 @@ token NUMBER
 token IDENT
 
 rule
-  SourceElements:
-    SourceElement
-  | SourceElements SourceElement { result = val.flatten }
-  ;
-
-  SourceElement:
+  Statement:
     BitwiseOrExpr
   ;
 
@@ -28,8 +23,9 @@ rule
   ;
 
   PrimaryExpr:
-    Literal
-  | IDENT         { result = ResolveNode.new(val.first) }
+    "(" Statement ")" { result = val[1] }
+  | Literal
+  | IDENT        { result = ResolveNode.new(val.first) }
   ;
 
   UnaryExpr:

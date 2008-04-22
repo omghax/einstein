@@ -7,6 +7,10 @@ class TestEval < Test::Unit::TestCase
     @parser.logger = Logger.new(STDERR)
   end
 
+  def test_parentheses
+    assert_equal (5 + 2) * (10 - 5), parse("(5 + 2) * (10 - 5)").eval
+  end
+
   def test_order_of_operations
     assert_equal 3 + 4 * 2, parse("3 + 4 * 2").eval
     assert_equal 7 + 9 * 2 - 16 / 8, parse("7 + 9 * 2 - 16 / 8").eval
