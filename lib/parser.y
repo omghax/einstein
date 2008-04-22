@@ -23,38 +23,13 @@ rule
     BitwiseOrExpr
   ;
 
-  BitwiseOrExpr:
-    BitwiseXorExpr
-  | BitwiseOrExpr "|" BitwiseXorExpr { result = BitwiseOrNode.new(val[0], val[2]) }
+  Literal:
+    NUMBER { result = NumberNode.new(val.first) }
   ;
 
-  BitwiseXorExpr:
-    BitwiseAndExpr
-  | BitwiseXorExpr "^" BitwiseAndExpr { result = BitwiseXorNode.new(val[0], val[2]) }
-  ;
-
-  BitwiseAndExpr:
-    ShiftExpr
-  | BitwiseAndExpr "&" ShiftExpr { result = BitwiseAndNode.new(val[0], val[2]) }
-  ;
-
-  ShiftExpr:
-    AdditiveExpr
-  | ShiftExpr LSHIFT AdditiveExpr { result = LeftShiftNode.new(val[0], val[2]) }
-  | ShiftExpr RSHIFT AdditiveExpr { result = RightShiftNode.new(val[0], val[2]) }
-  ;
-
-  AdditiveExpr:
-    MultiplicativeExpr
-  | AdditiveExpr "+" MultiplicativeExpr { result = AddNode.new(val[0], val[2]) }
-  | AdditiveExpr "-" MultiplicativeExpr { result = SubtractNode.new(val[0], val[2]) }
-  ;
-
-  MultiplicativeExpr:
-    UnaryExpr
-  | MultiplicativeExpr "*" UnaryExpr { result = MultiplyNode.new(val[0], val[2]) }
-  | MultiplicativeExpr "/" UnaryExpr { result = DivideNode.new(val[0], val[2]) }
-  | MultiplicativeExpr "%" UnaryExpr { result = ModulusNode.new(val[0], val[2]) }
+  PrimaryExpr:
+    Literal
+  | IDENT         { result = ResolveNode.new(val.first) }
   ;
 
   UnaryExpr:
@@ -64,13 +39,38 @@ rule
   | "~" UnaryExpr { result = BitwiseNotNode.new(val[1]) }
   ;
 
-  PrimaryExpr:
-    Literal
-  | IDENT { result = ResolveNode.new(val.first) }
+  MultiplicativeExpr:
+    UnaryExpr
+  | MultiplicativeExpr "*" UnaryExpr { result = MultiplyNode.new(val[0], val[2]) }
+  | MultiplicativeExpr "/" UnaryExpr { result = DivideNode.new(val[0], val[2]) }
+  | MultiplicativeExpr "%" UnaryExpr { result = ModulusNode.new(val[0], val[2]) }
   ;
 
-  Literal:
-    NUMBER { result = NumberNode.new(val.first) }
+  AdditiveExpr:
+    MultiplicativeExpr
+  | AdditiveExpr "+" MultiplicativeExpr { result = AddNode.new(val[0], val[2]) }
+  | AdditiveExpr "-" MultiplicativeExpr { result = SubtractNode.new(val[0], val[2]) }
+  ;
+
+  ShiftExpr:
+    AdditiveExpr
+  | ShiftExpr LSHIFT AdditiveExpr { result = LeftShiftNode.new(val[0], val[2]) }
+  | ShiftExpr RSHIFT AdditiveExpr { result = RightShiftNode.new(val[0], val[2]) }
+  ;
+
+  BitwiseAndExpr:
+    ShiftExpr
+  | BitwiseAndExpr "&" ShiftExpr { result = BitwiseAndNode.new(val[0], val[2]) }
+  ;
+
+  BitwiseXorExpr:
+    BitwiseAndExpr
+  | BitwiseXorExpr "^" BitwiseAndExpr { result = BitwiseXorNode.new(val[0], val[2]) }
+  ;
+
+  BitwiseOrExpr:
+    BitwiseXorExpr
+  | BitwiseOrExpr "|" BitwiseXorExpr { result = BitwiseOrNode.new(val[0], val[2]) }
   ;
 
 ---- header
