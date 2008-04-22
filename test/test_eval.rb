@@ -8,8 +8,8 @@ class TestEval < Test::Unit::TestCase
   end
 
   def test_order_of_operations
-    assert_equal 11, parse("3 + 4 * 2").eval
-    assert_equal 23, parse("7 + 9 * 2 - 16 / 8").eval
+    assert_equal 3 + 4 * 2, parse("3 + 4 * 2").eval
+    assert_equal 7 + 9 * 2 - 16 / 8, parse("7 + 9 * 2 - 16 / 8").eval
   end
 
   def test_resolve_should_raise_on_undefined_variable
@@ -18,49 +18,49 @@ class TestEval < Test::Unit::TestCase
 
   def test_resolve
     assert_equal 5, parse("x").eval(:x => 5)
-    assert_equal 10, parse("x + 5").eval(:x => 5)
-    assert_equal 16, parse("x * 4").eval(:x => 4)
+    assert_equal 5 + 5, parse("x + 5").eval(:x => 5)
+    assert_equal 4 * 4, parse("x * 4").eval(:x => 4)
   end
 
   def test_bitwise_or
-    assert_equal 0b1111, parse("0b1100 | 0b1111").eval
+    assert_equal 0b1100 | 0b1111, parse("0b1100 | 0b1111").eval
   end
 
   def test_bitwise_xor
-    assert_equal 0b0011, parse("0b1100 ^ 0b1111").eval
+    assert_equal 0b1100 ^ 0b1111, parse("0b1100 ^ 0b1111").eval
   end
 
   def test_bitwise_and
-    assert_equal 0b1100, parse("0b1100 & 0b1111").eval
+    assert_equal 0b1100 & 0b1111, parse("0b1100 & 0b1111").eval
   end
 
   def test_subtraction
-    assert_equal 5, parse("10 - 5").eval
-    assert_equal -5, parse("5 - 10").eval
+    assert_equal 10 - 5, parse("10 - 5").eval
+    assert_equal 5 - 10, parse("5 - 10").eval
   end
 
   def test_addition
-    assert_equal 3, parse("1 + 2").eval
-    assert_equal 3.0, parse("1.0 + 2.0").eval
+    assert_equal 1 + 2, parse("1 + 2").eval
+    assert_equal 1.0 + 2.0, parse("1.0 + 2.0").eval
   end
 
   def test_modulus
-    assert_equal 5, parse("5 % 10").eval
-    assert_equal 0, parse("10 % 5").eval
+    assert_equal 5 % 10, parse("5 % 10").eval
+    assert_equal 10 % 5, parse("10 % 5").eval
   end
 
   def test_division_should_raise_on_divide_by_zero
-    assert_raises(Einstein::ZeroDivisionError) { @parser.parse("1 / 0").eval }
+    assert_raises(Einstein::ZeroDivisionError) { parse("1 / 0").eval }
   end
 
   def test_division
-    assert_equal 2, parse("10 / 5").eval
-    assert_equal 2.0, parse("10.0 / 5.0").eval
+    assert_equal 10 / 5, parse("10 / 5").eval
+    assert_equal 10.0 / 5.0, parse("10.0 / 5.0").eval
   end
 
   def test_multiplication
-    assert_equal 50, parse("5 * 10").eval
-    assert_equal 50.0, parse("5.0 * 10.0").eval
+    assert_equal 5 * 10, parse("5 * 10").eval
+    assert_equal 5.0 * 10.0, parse("5.0 * 10.0").eval
   end
 
   def test_float
@@ -74,8 +74,8 @@ class TestEval < Test::Unit::TestCase
     assert_equal 0B1010, parse("0B1010").eval
 
     # Positive
-    assert_equal 0b1111, parse("+0b1111").eval
-    assert_equal 0B1010, parse("+0B1010").eval
+    assert_equal +0b1111, parse("+0b1111").eval
+    assert_equal +0B1010, parse("+0B1010").eval
 
     # Negative
     assert_equal -0b1111, parse("-0b1111").eval
@@ -89,8 +89,8 @@ class TestEval < Test::Unit::TestCase
     assert_equal 0XFF, parse("0XFF").eval
 
     # Positive
-    assert_equal 0xff, parse("+0xff").eval
-    assert_equal 0XFF, parse("+0XFF").eval
+    assert_equal +0xff, parse("+0xff").eval
+    assert_equal +0XFF, parse("+0XFF").eval
 
     # Negative
     assert_equal -0xff, parse("-0xff").eval
@@ -104,8 +104,8 @@ class TestEval < Test::Unit::TestCase
     assert_equal 10, parse("10").eval
 
     # Positive
-    assert_equal 1, parse("+1").eval
-    assert_equal 10, parse("+10").eval
+    assert_equal +1, parse("+1").eval
+    assert_equal +10, parse("+10").eval
 
     # Negative
     assert_equal -1, parse("-1").eval
