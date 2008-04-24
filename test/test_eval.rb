@@ -72,46 +72,37 @@ class TestEval < Test::Unit::TestCase
   end
 
   def test_number_base2
-    # Unsigned
     assert_equal 0b0, parse("0b0").eval
     assert_equal 0b1111, parse("0b1111").eval
     assert_equal 0B1010, parse("0B1010").eval
 
-    # Positive
     assert_equal +0b1111, parse("+0b1111").eval
     assert_equal +0B1010, parse("+0B1010").eval
 
-    # Negative
     assert_equal -0b1111, parse("-0b1111").eval
     assert_equal -0B1010, parse("-0B1010").eval
   end
 
   def test_number_base16
-    # Unsigned
     assert_equal 0x0, parse("0x0").eval
     assert_equal 0xff, parse("0xff").eval
     assert_equal 0XFF, parse("0XFF").eval
 
-    # Positive
     assert_equal +0xff, parse("+0xff").eval
     assert_equal +0XFF, parse("+0XFF").eval
 
-    # Negative
     assert_equal -0xff, parse("-0xff").eval
     assert_equal -0XFF, parse("-0XFF").eval
   end
 
   def test_number_base10
-    # Unsigned
     assert_equal 0, parse("0").eval
     assert_equal 1, parse("01").eval
     assert_equal 10, parse("10").eval
 
-    # Positive
     assert_equal +1, parse("+1").eval
     assert_equal +10, parse("+10").eval
 
-    # Negative
     assert_equal -1, parse("-1").eval
     assert_equal -10, parse("-10").eval
   end
