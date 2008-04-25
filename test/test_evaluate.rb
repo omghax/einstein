@@ -67,6 +67,10 @@ class TestEvaluate < Test::Unit::TestCase
     assert_equal 5.0 * 10.0, parse("5.0 * 10.0").evaluate
   end
 
+  def test_exponent
+    assert_equal 5 ** 2, parse("5 ** 2").evaluate
+  end
+
   def test_float
     assert_equal 1.1, parse("1.1").evaluate
   end

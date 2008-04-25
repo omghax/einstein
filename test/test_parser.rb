@@ -69,6 +69,10 @@ class TestParser < Test::Unit::TestCase
     assert_equal [[:multiply, [:lit, 5], [:lit, 10]]], parse("5 * 10").to_sexp
   end
 
+  def test_exponent
+    assert_equal [[:raise, [:lit, 5], [:lit, 2]]], parse("5 ** 2").to_sexp
+  end
+
   def test_unary_bitwise_not
     assert_equal [[:bitwise_not, [:lit, 10]]], parse("~10").to_sexp
   end

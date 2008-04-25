@@ -25,7 +25,7 @@ module Einstein
       if logger
         logger.error(token_to_str(error_token_id))
         logger.error("error value: #{error_value}")
-        logger.error("error stack: #{value_stack}")
+        logger.error("error stack: #{value_stack.inspect}")
       end
       super
     end

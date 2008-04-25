@@ -8,6 +8,7 @@ token TRUE FALSE
 /* punctuators */
 token LSHIFT  /* << */
 token RSHIFT  /* >> */
+token RAISE   /* ** */
 
 /* Terminal types */
 token NUMBER
@@ -28,8 +29,13 @@ rule
   | IDENT        { result = ResolveNode.new(val.first) }
   ;
 
-  UnaryExpr:
+  ExponentExpr:
     PrimaryExpr
+  | ExponentExpr RAISE PrimaryExpr { result = ExponentNode.new(val[0], val[2]) }
+  ;
+
+  UnaryExpr:
+    ExponentExpr
   | "+" UnaryExpr { result = UnaryPlusNode.new(val[1]) }
   | "-" UnaryExpr { result = UnaryMinusNode.new(val[1]) }
   | "~" UnaryExpr { result = BitwiseNotNode.new(val[1]) }

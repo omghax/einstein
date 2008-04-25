@@ -4,6 +4,7 @@ module Einstein
   class Tokenizer
     LITERALS = {
       # Punctuators
+      "**" => :RAISE,
       "<<" => :LSHIFT,
       ">>" => :RSHIFT
     }

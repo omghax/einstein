@@ -46,6 +46,9 @@ module Einstein
       attr_reader :left
     end
 
+    class ExponentNode < BinaryNode
+    end
+
     class MultiplyNode < BinaryNode
     end
 
