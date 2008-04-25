@@ -13,8 +13,8 @@ module Einstein
 
       attr_accessor :value
 
-      def eval(scope = {})
-        EvalVisitor.new(scope).accept(self)
+      def evaluate(scope = {})
+        EvaluateVisitor.new(scope).accept(self)
       end
 
       def to_sexp

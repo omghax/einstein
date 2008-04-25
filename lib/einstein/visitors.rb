@@ -42,7 +42,7 @@ module Einstein
       end
     end
 
-    class EvalVisitor < Visitor
+    class EvaluateVisitor < Visitor
       def initialize(scope)
         super()
         @scope = scope
