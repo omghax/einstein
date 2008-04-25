@@ -2,10 +2,7 @@
 
 class Einstein::GeneratedParser
 
-/* Literals */
-token TRUE FALSE
-
-/* punctuators */
+/* Punctuators */
 token LSHIFT  /* << */
 token RSHIFT  /* >> */
 token RAISE   /* ** */
@@ -25,8 +22,8 @@ rule
 
   PrimaryExpr:
     "(" Statement ")" { result = val[1] }
+  | IDENT             { result = ResolveNode.new(val.first) }
   | Literal
-  | IDENT        { result = ResolveNode.new(val.first) }
   ;
 
   ExponentExpr:
