@@ -22,7 +22,7 @@ module Einstein
       end
     end
 
-    class SourceElementsNode < Node
+    class StatementNode < Node
     end
 
     class NumberNode < Node

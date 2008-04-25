@@ -16,7 +16,7 @@ module Einstein
     def parse(str)
       @tokens = TOKENIZER.tokenize(str)
       @position = 0
-      SourceElementsNode.new([do_parse].flatten)
+      StatementNode.new(do_parse)
     end
 
     private

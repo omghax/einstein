@@ -5,14 +5,11 @@ module Einstein
         Number
       }
       SINGLE_VALUE_NODES = %w{
-        BitwiseNot Resolve UnaryMinus UnaryPlus
+        BitwiseNot Resolve Statement UnaryMinus UnaryPlus
       }
       BINARY_NODES = %w{
         Add BitwiseAnd BitwiseOr BitwiseXor Divide Exponent LeftShift Modulus
         Multiply RightShift Subtract
-      }
-      ARRAY_VALUE_NODES = %w{
-        SourceElements
       }
 
       def accept(target)
@@ -29,12 +26,6 @@ module Einstein
         end
       end
 
-      ARRAY_VALUE_NODES.each do |type|
-        define_method("visit_#{type}Node") do |o|
-          o.value && o.value.map { |v| v ? v.accept(self) : nil }
-        end
-      end
-
       SINGLE_VALUE_NODES.each do |type|
         define_method(:"visit_#{type}Node") do |o|
           o.value.accept(self)
@@ -46,10 +37,6 @@ module Einstein
       def initialize(scope)
         super()
         @scope = scope
-      end
-
-      def visit_SourceElementsNode(o)
-        o.value.inject(0) { |sum, x| sum += x.accept(self) }
       end
 
       def visit_NumberNode(o)
