@@ -4,9 +4,10 @@
 
 The Einstein library provides a simple arithmetic parser for Ruby apps. Sure,
 you could just use eval, but then you're opening yourself up to a world of
-hurt when you let users submit their own code. This way, you get a safe,
-"locked-down" arithmetic parser and evaluator without having to worry about
-someone haxoring your servers.
+hurt when you accept code from untrusted sources (ie. your users). With
+Einstein, you get a safe, "locked-down" arithmetic parser and evaluator that
+can't run system commands or otherwise hose your server in the event of a
+malicious code snippet.
 
 == Authors
 
