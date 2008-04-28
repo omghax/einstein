@@ -3,6 +3,7 @@ require "einstein/tokenizer"
 
 module Einstein
   class Parser < GeneratedParser
+    # Tokenizer instance that is shared between instances of Parser.
     TOKENIZER = Tokenizer.new
 
     def initialize
@@ -11,10 +12,26 @@ module Einstein
       @terminator = false
     end
 
+    # Logger object to receive debugging information when a parsing error
+    # occurs.  If this is nil, no information will be output.
     attr_accessor :logger
 
-    def parse(str)
-      @tokens = TOKENIZER.tokenize(str)
+    # Parses the given +expression+ using TOKENIZER, and returns an instance
+    # of StatementNode, which represents an AST.  You can take this AST and
+    # perform evaluations on it using #evaluate, or transform it into an
+    # s-expression using #to_sexp.
+    # 
+    # Example:
+    #   # Parse the expression "x + 3".
+    #   ast = Einstein::Parser.new.parse("x + 3")
+    # 
+    #   # Evaluate the expression with a given scope.
+    #   ast.evaluate(:x => 5) # => 8
+    # 
+    #   # Return the expression as an s-expression.
+    #   ast.to_sexp # => [:add, [:resolve, "x"], [:lit, 3]]
+    def parse(expression)
+      @tokens = TOKENIZER.tokenize(expression)
       @position = 0
       StatementNode.new(do_parse)
     end
@@ -30,6 +47,7 @@ module Einstein
       super
     end
 
+    # Used by Racc::Parser to step through tokens.
     def next_token
       begin
         return [false, false] if @position >= @tokens.length
