@@ -35,40 +35,64 @@
       <p>Get Version</p>
       <a href="http://rubyforge.org/projects/einstein" class="numbers">0.0.1</a>
     </div>
-    <h1>&#x2192; &#8216;einstein&#8217;</h1>
+    <h2>What</h2>
 
 
-	<h2>What</h2>
+	<p>The Einstein library provides a simple arithmetic parser for Ruby apps. Sure,
+you could just use eval, but then you&#8217;re opening yourself up to a world of
+hurt when you accept code from untrusted sources (ie. your users). With
+Einstein, you get a safe, &#8220;locked-down&#8221; arithmetic parser and evaluator that
+can&#8217;t run system commands or otherwise hose your server in the event of a
+malicious code snippet.</p>
+
+
+	<p>Einstein is more of an exercise in building a parser than a real-world
+library, but I&#8217;m releasing it in the hopes that someone will find it useful.</p>
 
 
 	<h2>Installing</h2>
 
 
-	<p><pre class='syntax'><span class="ident">sudo</span> <span class="ident">gem</span> <span class="ident">install</span> <span class="ident">einstein</span></pre></p>
-
+<pre>sudo gem install einstein</pre>
 
 	<h2>The basics</h2>
 
 
-	<h2>Demonstration of usage</h2>
+	<p>If you&#8217;re only interested in evaluating expressions, you can simply call
+Einstein.evaluate:</p>
 
 
-	<h2>Forum</h2>
+	<p><pre class='syntax'><span class="constant">Einstein</span><span class="punct">.</span><span class="ident">evaluate</span><span class="punct">(&quot;</span><span class="string">1 + 2 + 3</span><span class="punct">&quot;)</span> <span class="comment"># =&gt; 6</span></pre></p>
 
 
-	<p><a href="http://groups.google.com/group/einstein">http://groups.google.com/group/einstein</a></p>
+	<p>You can use variables as well, but you must supply their values:</p>
 
 
-	<p><span class="caps">TODO</span> &#8211; create Google Group &#8211; einstein</p>
+	<p><pre class='syntax'>
+<span class="constant">Einstein</span><span class="punct">.</span><span class="ident">evaluate</span><span class="punct">(&quot;</span><span class="string">x * 4</span><span class="punct">&quot;,</span> <span class="symbol">:x</span> <span class="punct">=&gt;</span> <span class="number">5</span><span class="punct">)</span> <span class="comment"># =&gt; 20</span>
+<span class="constant">Einstein</span><span class="punct">.</span><span class="ident">evaluate</span><span class="punct">(&quot;</span><span class="string">x + y + z</span><span class="punct">&quot;,</span> <span class="symbol">:x</span> <span class="punct">=&gt;</span> <span class="number">3</span><span class="punct">,</span> <span class="symbol">:y</span> <span class="punct">=&gt;</span> <span class="number">4</span><span class="punct">,</span> <span class="symbol">:z</span> <span class="punct">=&gt;</span> <span class="number">5</span><span class="punct">)</span> <span class="comment"># =&gt; 12</span>
+</pre></p>
 
 
 	<h2>How to submit patches</h2>
 
 
-	<p>Read the <a href="http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/">8 steps for fixing other people&#8217;s code</a> and for section <a href="http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/#8b-google-groups">8b: Submit patch to Google Groups</a>, use the Google Group above.</p>
+	<p>First, if you haven&#8217;t already, read the <a href="http://drnicwilliams.com/2007/06/01/8-steps-for-fixing-other-peoples-code/">8 steps for fixing other people&#8217;s
+code</a></p>
 
 
-	<p>The trunk repository is <code>svn://rubyforge.org/var/svn/einstein/trunk</code> for anonymous access.</p>
+	<p>The best way to submit a patch is to fork the project on
+<a href="http://github.com">GitHub</a> and make your changes. When you&#8217;ve finished, issue
+a pull request to let me know about the changes you&#8217;ve made.</p>
+
+
+	<h2>Repository access</h2>
+
+
+	<p>The repository is <code>git://github.com/omghax/einstein.git</code> for
+anonymous access. <a href="http://github.com/omghax/einstein/tree/master">GitHub</a> also
+offers a .tgz file download for those of you who don&#8217;t have git installed
+(shame on you).</p>
 
 
 	<h2>License</h2>
@@ -80,9 +104,12 @@
 	<h2>Contact</h2>
 
 
-	<p>Comments are welcome. Send an email to <a href="mailto:FIXME"><span class="caps">FIXME</span> full name</a> email via the <a href="http://groups.google.com/group/einstein">forum</a></p>
+	<p>Comments are welcome. Send a message to omghax on
+<a href="http://github.com/omghax">GitHub</a>. Better yet, create your own fork of
+Einstein and take it to crazy new places. If I like your changes, I&#8217;ll merge
+them into the master branch.</p>
     <p class="coda">
-      <a href="FIXME email">FIXME full name</a>, 20th April 2008<br>
+      <a href="http://github.com/omghax">Dray Lacy</a>, 28th April 2008<br>
       Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>
     </p>
 </div>
