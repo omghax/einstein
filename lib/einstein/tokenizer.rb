@@ -1,6 +1,38 @@
-require "einstein/lexeme"
-
 module Einstein
+  class Token
+    def initialize(name, value, &transformer)
+      @name        = name
+      @value       = value
+      @transformer = transformer
+    end
+
+    attr_accessor :name
+    attr_accessor :value
+    attr_accessor :transformer
+
+    def to_racc_token
+      return transformer.call(name, value) if transformer
+      [name, value]
+    end
+  end
+
+  class Lexeme
+    def initialize(name, pattern, &block)
+      @name    = name
+      @pattern = pattern
+      @block   = block
+    end
+
+    attr_reader :name
+    attr_reader :pattern
+
+    def match(string)
+      match = pattern.match(string)
+      return Token.new(name, match.to_s, &@block) if match
+      match
+    end
+  end
+
   class Tokenizer
     LITERALS = {
       # Punctuators
