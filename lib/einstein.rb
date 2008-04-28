@@ -1,7 +1,6 @@
 $:.unshift File.dirname(__FILE__)
 
 require "einstein/parser"
-require "einstein/errors"
 
 # == Basic Usage
 # 
@@ -31,6 +30,15 @@ require "einstein/errors"
 #   stmt.evaluate(:x => 1, :y => 2) # => 3
 #   stmt.evaluate(:x => 25, :y => 30) # => 55
 module Einstein
+  class Error < StandardError # :nodoc:
+  end
+
+  class ResolveError < Error # :nodoc:
+  end
+
+  class ZeroDivisionError < Error # :nodoc:
+  end
+
   class << self
     # Parse the given +expression+ and return the AST as
     def parse(expression)
