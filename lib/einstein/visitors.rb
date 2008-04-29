@@ -21,13 +21,13 @@ module Einstein
       end
 
       BINARY_NODES.each do |type|
-        define_method(:"visit_#{type}Node") do |o|
+        define_method("visit_#{type}Node") do |o|
           [o.left && o.left.accept(self), o.value && o.value.accept(self)]
         end
       end
 
       SINGLE_VALUE_NODES.each do |type|
-        define_method(:"visit_#{type}Node") do |o|
+        define_method("visit_#{type}Node") do |o|
           o.value.accept(self)
         end
       end
