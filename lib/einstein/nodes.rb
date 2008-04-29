@@ -1,11 +1,9 @@
-require "einstein/visitable"
 require "einstein/visitors"
 
 module Einstein
   module Nodes
     # Base class for all Einstein nodes.
     class Node
-      include Einstein::Visitable
       include Einstein::Visitors
 
       # Initializes a new instance of this node with the given +value+.
@@ -15,6 +13,22 @@ module Einstein
 
       # The value of this node.
       attr_accessor :value
+
+      # Implements the visitor pattern by calling a method named
+      # visit_SomeNode when visiting a class named SomeNode.  This way we
+      # separate the tree traversal logic from the nodes themselves, which
+      # makes it easier to modify the visitors, or to add new ones.
+      def accept(visitor, &block)
+        klass = self.class.ancestors.find do |ancestor|
+          visitor.respond_to?("visit_#{ancestor.name.split(/::/)[-1]}")
+        end
+
+        if klass
+          visitor.send("visit_#{klass.name.split(/::/)[-1]}", self, &block)
+        else
+          raise "No visitor for '#{self.class}'"
+        end
+      end
 
       # Evaluate this node against the given +scope+.  Returns a numeric value
       # calculated by walking the AST with an instance of EvaluateVisitor.
