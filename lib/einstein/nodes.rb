@@ -36,9 +36,13 @@ module Einstein
         EvaluateVisitor.new(scope).accept(self)
       end
 
-      def inspect
+      # Performs a "pretty print" of this node.
+      def to_s
         PrettyPrintVisitor.new.accept(self)
       end
+
+      # Also use #to_s for inspecting a node in IRB.
+      alias_method :inspect, :to_s
 
       # Returns this node as an s-expression.  Built by walking the AST with
       # an instance of SexpVisitor.
