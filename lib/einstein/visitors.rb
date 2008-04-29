@@ -37,10 +37,15 @@ module Einstein
     class EvaluateVisitor < Visitor
       # Initialize a new instance of this visitor with the given +scope+, as a
       # hash.  This +scope+ should provide a mapping of variable names to
-      # values.  Variable names should be strings.
+      # values.
       def initialize(scope)
         super()
-        @scope = scope
+
+        # Convert the scope hash keys from symbols to strings.
+        @scope = scope.inject({}) do |hash, (key, value)|
+          hash[key.to_s] = value
+          hash
+        end
       end
 
       # Returns the value of +o+.
@@ -109,8 +114,8 @@ module Einstein
       # Performs a lookup for the value of +o+ inside this visitor's scope. 
       # Raises ResolveError if the variable is not in scope.
       def visit_ResolveNode(o)
-        raise ResolveError, "undefined variable: #{o.value}" unless @scope.has_key?(o.value.to_sym)
-        @scope[o.value.to_sym]
+        raise ResolveError, "undefined variable: #{o.value}" unless @scope.has_key?(o.value)
+        @scope[o.value]
       end
     end
 
