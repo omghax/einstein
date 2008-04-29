@@ -2,10 +2,10 @@ module Einstein
   module Visitors
     class Visitor
       TERMINAL_NODES = %w{
-        Number
+        Number Resolve
       }
       SINGLE_VALUE_NODES = %w{
-        BitwiseNot Resolve Statement UnaryMinus UnaryPlus
+        BitwiseNot Statement UnaryMinus UnaryPlus
       }
       BINARY_NODES = %w{
         Add BitwiseAnd BitwiseOr BitwiseXor Divide Exponent LeftShift Modulus
@@ -20,15 +20,15 @@ module Einstein
         define_method("visit_#{type}Node") { |o| }
       end
 
-      BINARY_NODES.each do |type|
-        define_method("visit_#{type}Node") do |o|
-          [o.left && o.left.accept(self), o.value && o.value.accept(self)]
-        end
-      end
-
       SINGLE_VALUE_NODES.each do |type|
         define_method("visit_#{type}Node") do |o|
           o.value.accept(self)
+        end
+      end
+
+      BINARY_NODES.each do |type|
+        define_method("visit_#{type}Node") do |o|
+          [o.left && o.left.accept(self), o.value && o.value.accept(self)]
         end
       end
     end
