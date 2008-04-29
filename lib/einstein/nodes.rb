@@ -22,6 +22,10 @@ module Einstein
         EvaluateVisitor.new(scope).accept(self)
       end
 
+      def inspect
+        PrettyPrintVisitor.new.accept(self)
+      end
+
       # Returns this node as an s-expression.  Built by walking the AST with
       # an instance of SexpVisitor.
       def to_sexp
