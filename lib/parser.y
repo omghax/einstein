@@ -26,23 +26,23 @@ rule
   | Literal
   ;
 
-  ExponentExpr:
-    PrimaryExpr
-  | ExponentExpr RAISE PrimaryExpr { result = ExponentNode.new(val[0], val[2]) }
-  ;
-
   UnaryExpr:
-    ExponentExpr
+    PrimaryExpr
   | "+" UnaryExpr { result = UnaryPlusNode.new(val[1]) }
   | "-" UnaryExpr { result = UnaryMinusNode.new(val[1]) }
   | "~" UnaryExpr { result = BitwiseNotNode.new(val[1]) }
   ;
 
-  MultiplicativeExpr:
+  ExponentExpr:
     UnaryExpr
-  | MultiplicativeExpr "*" UnaryExpr { result = MultiplyNode.new(val[0], val[2]) }
-  | MultiplicativeExpr "/" UnaryExpr { result = DivideNode.new(val[0], val[2]) }
-  | MultiplicativeExpr "%" UnaryExpr { result = ModulusNode.new(val[0], val[2]) }
+  | ExponentExpr RAISE UnaryExpr { result = ExponentNode.new(val[0], val[2]) }
+  ;
+
+  MultiplicativeExpr:
+    ExponentExpr
+  | MultiplicativeExpr "*" ExponentExpr { result = MultiplyNode.new(val[0], val[2]) }
+  | MultiplicativeExpr "/" ExponentExpr { result = DivideNode.new(val[0], val[2]) }
+  | MultiplicativeExpr "%" ExponentExpr { result = ModulusNode.new(val[0], val[2]) }
   ;
 
   AdditiveExpr:

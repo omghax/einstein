@@ -73,6 +73,8 @@ class TestParser < Test::Unit::TestCase
 
   def test_exponent
     assert_equal [:raise, [:lit, 5], [:lit, 2]], parse("5 ** 2").to_sexp
+    assert_equal [:raise, [:lit, 3], [:u_minus, [:lit, 6]]], parse("3 ** -6").to_sexp
+    assert_equal [:raise, [:lit, 18], [:bitwise_not, [:lit, 4]]], parse("18 ** ~4").to_sexp
   end
 
   def test_unary_bitwise_not
