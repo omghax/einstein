@@ -30,26 +30,27 @@ require "einstein/parser"
 #   stmt.evaluate(:x => 1, :y => 2) # => 3
 #   stmt.evaluate(:x => 25, :y => 30) # => 55
 module Einstein
-  class Error < StandardError # :nodoc:
+  # Base class for all Einstein errors.
+  class Error < StandardError
   end
 
-  class ResolveError < Error # :nodoc:
+  # Raised when a variable's name cannot be resolved.
+  class ResolveError < Error
   end
 
-  class ZeroDivisionError < Error # :nodoc:
+  # Raised when division by zero occurs.
+  class ZeroDivisionError < Error
   end
 
-  class << self
-    # Parse the given +expression+ and return the AST as
-    def parse(expression)
-      Parser.new.parse(expression)
-    end
+  # Parse the given +expression+ and return the AST as
+  def self.parse(expression)
+    Parser.new.parse(expression)
+  end
 
-    # Evaluate the given +expression+ with the given +scope+.  Any variables
-    # used by the +expression+, but undeclared in the +scope+, will cause a
-    # Einstein::ResolveError to be raised.
-    def evaluate(expression, scope = {})
-      parse(expression).evaluate(scope)
-    end
+  # Evaluate the given +expression+ with the given +scope+.  Any variables
+  # used by the +expression+, but undeclared in the +scope+, will cause a
+  # Einstein::ResolveError to be raised.
+  def self.evaluate(expression, scope = {})
+    parse(expression).evaluate(scope)
   end
 end
