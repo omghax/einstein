@@ -13,7 +13,6 @@ lib/einstein/tokenizer.rb
 lib/einstein/version.rb
 lib/einstein/visitors.rb
 lib/parser.y
-log/debug.log
 script/destroy
 script/generate
 script/txt2html
