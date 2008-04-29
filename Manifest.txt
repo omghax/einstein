@@ -6,7 +6,14 @@ Rakefile
 config/hoe.rb
 config/requirements.rb
 lib/einstein.rb
+lib/einstein/generated_parser.rb
+lib/einstein/nodes.rb
+lib/einstein/parser.rb
+lib/einstein/tokenizer.rb
 lib/einstein/version.rb
+lib/einstein/visitable.rb
+lib/einstein/visitors.rb
+lib/parser.y
 log/debug.log
 script/destroy
 script/generate
@@ -15,8 +22,9 @@ setup.rb
 tasks/deployment.rake
 tasks/environment.rake
 tasks/website.rake
-test/test_einstein.rb
+test/test_evaluate.rb
 test/test_helper.rb
+test/test_parser.rb
 website/index.html
 website/index.txt
 website/javascripts/rounded_corners_lite.inc.js
