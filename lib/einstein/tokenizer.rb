@@ -1,34 +1,46 @@
 module Einstein
   class Token
+    # The default transformer used by instances of Token when no block is
+    # given to #initialize.
+    DEFAULT_TRANSFORMER = lambda { |name, value| [name, value] }
+
     def initialize(name, value, &transformer)
-      @name        = name
-      @value       = value
-      @transformer = transformer
+      @name = name
+      @value = value
+      @transformer = transformer || DEFAULT_TRANSFORMER
     end
 
+    # This token's name (eg. :NUMBER, :IDENT).
     attr_accessor :name
+
+    # This token's value (eg. 1, "x").
     attr_accessor :value
+
+    # The block given to this token's #initialize method.  This block is
+    # called by #to_racc_token.
     attr_accessor :transformer
 
+    # Converts this token to a format that Racc expects.  This is an array of
+    # the format [name, value].
+    # 
+    # Examples:
+    #   [:NUMBER, 2.20]
+    #   [:IDENT, "x"]
     def to_racc_token
-      return transformer.call(name, value) if transformer
-      [name, value]
+      @transformer.call(name, value)
     end
   end
 
   class Lexeme
     def initialize(name, pattern, &block)
-      @name    = name
+      @name = name
       @pattern = pattern
-      @block   = block
+      @block = block
     end
 
-    attr_reader :name
-    attr_reader :pattern
-
     def match(string)
-      match = pattern.match(string)
-      return Token.new(name, match.to_s, &@block) if match
+      match = @pattern.match(string)
+      return Token.new(@name, match.to_s, &@block) if match
       match
     end
   end
@@ -63,9 +75,7 @@ module Einstein
         [LITERALS[value], value]
       end
 
-      token(:IDENT, /\A(\w|\$)+/) do |type,value|
-        [type, value]
-      end
+      token(:IDENT, /\A(\w|\$)+/)
 
       token(:WS, /\A[\s\r\n]*/m)
 
