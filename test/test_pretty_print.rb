@@ -34,6 +34,14 @@ class TestPrettyPrint < Test::Unit::TestCase
     assert_equal "(12 & 15)", parse("0b1100 & 0b1111").inspect
   end
 
+  def test_rshift
+    assert_equal("(10 >> 2)", parse("10 >> 2").inspect)
+  end
+
+  def test_lshift
+    assert_equal("(10 << 2)", parse("10 << 2").inspect)
+  end
+
   def test_subtraction
     assert_equal "(10 - 5)", parse("10 - 5").inspect
     assert_equal "(5 - 10)", parse("5 - 10").inspect

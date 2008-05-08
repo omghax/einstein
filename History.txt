@@ -1,3 +1,8 @@
+== 0.1.1 2008-05-08
+
+* 1 major bugfix:
+  * Fixed incorrect evaluation of left and right shifts.
+
 == 0.1.0 2008-04-30
 
 * 1 major enhancement:

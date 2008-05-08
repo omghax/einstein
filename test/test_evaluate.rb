@@ -38,6 +38,14 @@ class TestEvaluate < Test::Unit::TestCase
     assert_equal(0b1100 & 0b1111, parse("0b1100 & 0b1111").evaluate)
   end
 
+  def test_rshift
+    assert_equal(10 >> 2, parse("10 >> 2").evaluate)
+  end
+
+  def test_lshift
+    assert_equal(10 << 2, parse("10 << 2").evaluate)
+  end
+
   def test_subtraction
     assert_equal(10 - 5, parse("10 - 5").evaluate)
     assert_equal(5 - 10, parse("5 - 10").evaluate)

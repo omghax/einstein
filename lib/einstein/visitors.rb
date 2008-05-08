@@ -96,6 +96,18 @@ module Einstein
         o.left.accept(self) - o.value.accept(self)
       end
 
+      # Performs a bitwise left shift of the left value of +o+ by the number
+      # of bits specified in the right value of +o+.
+      def visit_LeftShiftNode(o)
+        o.left.accept(self) << o.value.accept(self)
+      end
+
+      # Performs a bitwise right shift of the left value of +o+ by the number
+      # of bits specified in the right value of +o+.
+      def visit_RightShiftNode(o)
+        o.left.accept(self) >> o.value.accept(self)
+      end
+
       # Performs a bitwise AND with the left and right values of +o+.
       def visit_BitwiseAndNode(o)
         o.left.accept(self) & o.value.accept(self)
