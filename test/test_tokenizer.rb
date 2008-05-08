@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/test_helper"
+require File.dirname(__FILE__) + "/helper"
 
 class TestTokenizer < Test::Unit::TestCase
   def setup

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/test_helper"
+require File.dirname(__FILE__) + "/helper"
 require "logger"
 
 class TestParser < Test::Unit::TestCase
