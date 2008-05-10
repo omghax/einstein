@@ -17,63 +17,57 @@ rule
   ;
 
   Literal:
-    NUMBER { result = NumberNode.new(val.first) }
+    NUMBER { result = [:lit, val.first] }
   ;
 
   PrimaryExpr:
     "(" Statement ")" { result = val[1] }
-  | IDENT             { result = ResolveNode.new(val.first) }
+  | IDENT             { result = [:resolve, val.first] }
   | Literal
   ;
 
   UnaryExpr:
     PrimaryExpr
-  | "+" UnaryExpr { result = UnaryPlusNode.new(val[1]) }
-  | "-" UnaryExpr { result = UnaryMinusNode.new(val[1]) }
-  | "~" UnaryExpr { result = BitwiseNotNode.new(val[1]) }
+  | "+" UnaryExpr { result = [:u_plus, val[1]] }
+  | "-" UnaryExpr { result = [:u_minus, val[1]] }
+  | "~" UnaryExpr { result = [:bitwise_not, val[1]] }
   ;
 
   ExponentExpr:
     UnaryExpr
-  | ExponentExpr RAISE UnaryExpr { result = ExponentNode.new(val[0], val[2]) }
+  | ExponentExpr RAISE UnaryExpr { result = [:raise, val[0], val[2]] }
   ;
 
   MultiplicativeExpr:
     ExponentExpr
-  | MultiplicativeExpr "*" ExponentExpr { result = MultiplyNode.new(val[0], val[2]) }
-  | MultiplicativeExpr "/" ExponentExpr { result = DivideNode.new(val[0], val[2]) }
-  | MultiplicativeExpr "%" ExponentExpr { result = ModulusNode.new(val[0], val[2]) }
+  | MultiplicativeExpr "*" ExponentExpr { result = [:multiply, val[0], val[2]] }
+  | MultiplicativeExpr "/" ExponentExpr { result = [:divide, val[0], val[2]] }
+  | MultiplicativeExpr "%" ExponentExpr { result = [:modulus, val[0], val[2]] }
   ;
 
   AdditiveExpr:
     MultiplicativeExpr
-  | AdditiveExpr "+" MultiplicativeExpr { result = AddNode.new(val[0], val[2]) }
-  | AdditiveExpr "-" MultiplicativeExpr { result = SubtractNode.new(val[0], val[2]) }
+  | AdditiveExpr "+" MultiplicativeExpr { result = [:add, val[0], val[2]] }
+  | AdditiveExpr "-" MultiplicativeExpr { result = [:subtract, val[0], val[2]] }
   ;
 
   ShiftExpr:
     AdditiveExpr
-  | ShiftExpr LSHIFT AdditiveExpr { result = LeftShiftNode.new(val[0], val[2]) }
-  | ShiftExpr RSHIFT AdditiveExpr { result = RightShiftNode.new(val[0], val[2]) }
+  | ShiftExpr LSHIFT AdditiveExpr { result = [:lshift, val[0], val[2]] }
+  | ShiftExpr RSHIFT AdditiveExpr { result = [:rshift, val[0], val[2]] }
   ;
 
   BitwiseAndExpr:
     ShiftExpr
-  | BitwiseAndExpr "&" ShiftExpr { result = BitwiseAndNode.new(val[0], val[2]) }
+  | BitwiseAndExpr "&" ShiftExpr { result = [:bitwise_and, val[0], val[2]] }
   ;
 
   BitwiseXorExpr:
     BitwiseAndExpr
-  | BitwiseXorExpr "^" BitwiseAndExpr { result = BitwiseXorNode.new(val[0], val[2]) }
+  | BitwiseXorExpr "^" BitwiseAndExpr { result = [:bitwise_xor, val[0], val[2]] }
   ;
 
   BitwiseOrExpr:
     BitwiseXorExpr
-  | BitwiseOrExpr "|" BitwiseXorExpr { result = BitwiseOrNode.new(val[0], val[2]) }
+  | BitwiseOrExpr "|" BitwiseXorExpr { result = [:bitwise_or, val[0], val[2]] }
   ;
-
----- header
-  require "einstein/nodes"
-
----- inner
-  include Einstein::Nodes

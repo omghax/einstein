@@ -1,5 +1,6 @@
-require "einstein/generated_parser"
-require "einstein/tokenizer"
+require 'einstein/generated_parser'
+require 'einstein/expression'
+require 'einstein/tokenizer'
 
 module Einstein
   class Parser < GeneratedParser
@@ -33,7 +34,7 @@ module Einstein
     def parse(expression)
       @tokens = TOKENIZER.tokenize(expression)
       @position = 0
-      StatementNode.new(do_parse)
+      Expression.new(do_parse)
     end
 
     private

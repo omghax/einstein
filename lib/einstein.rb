@@ -1,6 +1,6 @@
 $:.unshift File.dirname(__FILE__)
 
-require "einstein/parser"
+require 'einstein/parser'
 
 # == Basic Usage
 # 
@@ -51,6 +51,7 @@ module Einstein
   # used by the +expression+, but undeclared in the +scope+, will cause a
   # Einstein::ResolveError to be raised.
   def self.evaluate(expression, scope = {})
-    parse(expression).evaluate(scope)
+    EvaluateProcessor.new(scope).process(parse(expression))
+    # parse(expression).evaluate(scope)
   end
 end
