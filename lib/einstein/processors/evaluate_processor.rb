@@ -1,9 +1,12 @@
-require 'einstein/processor'
+require 'rubygems'
+require 'sexp_processor'
 
 module Einstein
-  class EvaluateProcessor < Processor
+  class EvaluateProcessor < SexpProcessor
     def initialize(scope = {})
       super()
+      self.auto_shift_type = true
+      self.strict = true
       self.expected = Numeric
 
       # Convert the scope hash keys from symbols to strings.

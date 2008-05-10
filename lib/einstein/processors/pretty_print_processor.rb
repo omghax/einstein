@@ -1,9 +1,12 @@
-require 'einstein/processor'
+require 'rubygems'
+require 'sexp_processor'
 
 module Einstein
-  class PrettyPrintProcessor < Processor
+  class PrettyPrintProcessor < SexpProcessor
     def initialize
       super
+      self.auto_shift_type = true
+      self.strict = true
       self.expected = String
     end
 

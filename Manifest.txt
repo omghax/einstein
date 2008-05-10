@@ -7,9 +7,9 @@ config/hoe.rb
 config/requirements.rb
 einstein.gemspec
 lib/einstein.rb
+lib/einstein/expression.rb
 lib/einstein/generated_parser.rb
 lib/einstein/parser.rb
-lib/einstein/processor.rb
 lib/einstein/processors/evaluate_processor.rb
 lib/einstein/processors/pretty_print_processor.rb
 lib/einstein/tokenizer.rb
