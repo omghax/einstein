@@ -23,12 +23,12 @@ module Einstein
     # Evaluate this node against the given +scope+. Returns a numeric value
     # calculated by walking the AST with an instance of EvaluateProcessor.
     def evaluate(scope = {})
-      EvaluateProcessor.new(scope).process(@exp)
+      EvaluateProcessor.new(scope).process(sexp)
     end
 
     # Performs a "pretty print" of this expression.
     def to_s
-      PrettyPrintProcessor.new.process(@exp)
+      PrettyPrintProcessor.new.process(sexp)
     end
 
     # Also use #to_s for inspecting a node in IRB.
