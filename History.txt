@@ -1,3 +1,11 @@
+== 0.2.0 2008-05-10
+
+* 1 major enhancement:
+  * Huge changes to the internal structure of Einstein. Eliminated the node
+    classes in favor of modeling the syntax tree as an s-expression. This
+    makes the code much simpler, and I have a feeling it will be faster as
+    well, but I need to run some benchmarks to be sure.
+
 == 0.1.1 2008-05-08
 
 * 1 major bugfix:
