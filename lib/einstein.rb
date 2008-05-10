@@ -52,6 +52,5 @@ module Einstein
   # Einstein::ResolveError to be raised.
   def self.evaluate(expression, scope = {})
     EvaluateProcessor.new(scope).process(parse(expression))
-    # parse(expression).evaluate(scope)
   end
 end
