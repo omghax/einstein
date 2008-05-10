@@ -30,16 +30,8 @@ require 'einstein/parser'
 #   stmt.evaluate(:x => 1, :y => 2) # => 3
 #   stmt.evaluate(:x => 25, :y => 30) # => 55
 module Einstein
-  # Base class for all Einstein errors.
-  class Error < StandardError
-  end
-
   # Raised when a variable's name cannot be resolved.
-  class ResolveError < Error
-  end
-
-  # Raised when division by zero occurs.
-  class ZeroDivisionError < Error
+  class ResolveError < StandardError
   end
 
   # Parse the given +expression+ and return the AST as
