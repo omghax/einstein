@@ -19,10 +19,12 @@ script/destroy
 script/generate
 script/txt2html
 setup.rb
+tasks/benchmark.rake
 tasks/deployment.rake
 tasks/environment.rake
 tasks/website.rake
 test/helper.rb
+test/test_einstein.rb
 test/test_evaluate_processor.rb
 test/test_parser.rb
 test/test_pretty_print_processor.rb

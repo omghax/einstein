@@ -54,6 +54,7 @@ hoe = Hoe.new(GEM_NAME, VERS) do |p|
   p.test_globs = ["test/**/test_*.rb"]
   p.clean_globs |= ['**/.*.sw?', '*.gem', '.config', '**/.DS_Store']
   p.changes = p.paragraphs_of("History.txt", 0..1).join("\n\n")
+  p.extra_deps = [['ParseTree', '>=2.1.1']]
 end
 
 CHANGES = hoe.paragraphs_of('History.txt', 0..1).join("\\n\\n")
