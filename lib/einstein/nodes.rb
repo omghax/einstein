@@ -6,6 +6,8 @@ module Einstein
   module Nodes
     # Base class for all Einstein nodes.
     class Node
+      include Einstein::Visitors
+
       # Initializes a new instance of this node with the given +value+.
       def initialize(value)
         @value = value
