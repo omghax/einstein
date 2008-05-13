@@ -1,34 +1,52 @@
 module Einstein
   class Visitor
+    # Terminal types (numbers, variables, etc.).
     TERMINAL_NODES = %w{
-      Number Resolve
-    }
-    SINGLE_VALUE_NODES = %w{
-      BitwiseNot Statement UnaryMinus UnaryPlus
-    }
-    BINARY_NODES = %w{
-      Add BitwiseAnd BitwiseOr BitwiseXor Divide Exponent LeftShift Modulus
-      Multiply RightShift Subtract
+      Number
+      Resolve
     }
 
-    def accept(target)
-      target.accept(self)
-    end
-
+    # Define a visit_xNode method for each terminal node type.
     TERMINAL_NODES.each do |type|
       define_method("visit_#{type}Node") { |o| }
     end
 
+    # Nodes that take a single value.
+    SINGLE_VALUE_NODES = %w{
+      BitwiseNot
+      Statement
+      UnaryMinus
+      UnaryPlus
+    }
+
+    # Define a visit_xNode method for each single-value node type.
     SINGLE_VALUE_NODES.each do |type|
-      define_method("visit_#{type}Node") do |o|
-        o.value.accept(self)
-      end
+      define_method("visit_#{type}Node") { |o| accept(o.value) }
     end
 
+    # Nodes that take two values.
+    BINARY_NODES = %w{
+      Add
+      BitwiseAnd
+      BitwiseOr
+      BitwiseXor
+      Divide
+      Exponent
+      LeftShift
+      Modulus
+      Multiply
+      RightShift
+      Subtract
+    }
+
+    # Define a visit_xNode method for each binary node type.
     BINARY_NODES.each do |type|
-      define_method("visit_#{type}Node") do |o|
-        [o.left && o.left.accept(self), o.value && o.value.accept(self)]
-      end
+      define_method("visit_#{type}Node") { |o| [accept(o.left), accept(o.right)] }
+    end
+
+    # Visits the given +target+ by calling its #accept method on this visitor.
+    def accept(target)
+      target.accept(self)
     end
   end
 end
