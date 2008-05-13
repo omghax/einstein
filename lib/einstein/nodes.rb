@@ -96,6 +96,9 @@ module Einstein
 
       # The secondary value given to #initialize.
       attr_reader :left
+
+      # Since we have #left, might as well have #right.
+      alias_method :right, :value
     end
 
     # Node representing an exponential raise.  This node's +left+ value is the

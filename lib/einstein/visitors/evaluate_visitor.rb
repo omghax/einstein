@@ -33,62 +33,62 @@ module Einstein
 
     # Raises the left value of +o+ by the right value of +o+.
     def visit_ExponentNode(o)
-      accept(o.left) ** accept(o.value)
+      accept(o.left) ** accept(o.right)
     end
 
     # Multiplies the left and right values of +o+.
     def visit_MultiplyNode(o)
-      accept(o.left) * accept(o.value)
+      accept(o.left) * accept(o.right)
     end
 
     # Divides the left value of +o+ by the right value of +o+.  Raises
     # ZeroDivisionError if the right value of +o+ is zero.
     def visit_DivideNode(o)
-      dividend = accept(o.value)
+      dividend = accept(o.right)
       raise ZeroDivisionError, "divided by zero" if dividend == 0
       accept(o.left) / dividend
     end
 
     # Performs a modulus operation for the left and right values of +o+.
     def visit_ModulusNode(o)
-      accept(o.left) % accept(o.value)
+      accept(o.left) % accept(o.right)
     end
 
     # Adds the left and right values of +o+.
     def visit_AddNode(o)
-      accept(o.left) + accept(o.value)
+      accept(o.left) + accept(o.right)
     end
 
     # Subtracts the right value of +o+ by the left value of +o+.
     def visit_SubtractNode(o)
-      accept(o.left) - accept(o.value)
+      accept(o.left) - accept(o.right)
     end
 
     # Performs a bitwise left shift of the left value of +o+ by the number
     # of bits specified in the right value of +o+.
     def visit_LeftShiftNode(o)
-      accept(o.left) << accept(o.value)
+      accept(o.left) << accept(o.right)
     end
 
     # Performs a bitwise right shift of the left value of +o+ by the number
     # of bits specified in the right value of +o+.
     def visit_RightShiftNode(o)
-      accept(o.left) >> accept(o.value)
+      accept(o.left) >> accept(o.right)
     end
 
     # Performs a bitwise AND with the left and right values of +o+.
     def visit_BitwiseAndNode(o)
-      accept(o.left) & accept(o.value)
+      accept(o.left) & accept(o.right)
     end
 
     # Performs a bitwise XOR with the left and right values of +o+.
     def visit_BitwiseXorNode(o)
-      accept(o.left) ^ accept(o.value)
+      accept(o.left) ^ accept(o.right)
     end
 
     # Performs a bitwise OR with the left and right values of +o+.
     def visit_BitwiseOrNode(o)
-      accept(o.left) | accept(o.value)
+      accept(o.left) | accept(o.right)
     end
 
     # Performs a lookup for the value of +o+ inside this visitor's scope. 
