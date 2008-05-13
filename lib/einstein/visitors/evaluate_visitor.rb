@@ -23,72 +23,72 @@ module Einstein
 
     # Returns the value of +o+.
     def visit_UnaryPlusNode(o)
-      o.value.accept(self)
+      accept(o.value)
     end
 
     # Returns the negated value of +o+.
     def visit_UnaryMinusNode(o)
-      -o.value.accept(self)
+      -accept(o.value)
     end
 
     # Raises the left value of +o+ by the right value of +o+.
     def visit_ExponentNode(o)
-      o.left.accept(self) ** o.value.accept(self)
+      accept(o.left) ** accept(o.value)
     end
 
     # Multiplies the left and right values of +o+.
     def visit_MultiplyNode(o)
-      o.left.accept(self) * o.value.accept(self)
+      accept(o.left) * accept(o.value)
     end
 
     # Divides the left value of +o+ by the right value of +o+.  Raises
     # ZeroDivisionError if the right value of +o+ is zero.
     def visit_DivideNode(o)
-      dividend = o.value.accept(self)
+      dividend = accept(o.value)
       raise ZeroDivisionError, "divided by zero" if dividend == 0
-      o.left.accept(self) / dividend
+      accept(o.left) / dividend
     end
 
     # Performs a modulus operation for the left and right values of +o+.
     def visit_ModulusNode(o)
-      o.left.accept(self) % o.value.accept(self)
+      accept(o.left) % accept(o.value)
     end
 
     # Adds the left and right values of +o+.
     def visit_AddNode(o)
-      o.left.accept(self) + o.value.accept(self)
+      accept(o.left) + accept(o.value)
     end
 
     # Subtracts the right value of +o+ by the left value of +o+.
     def visit_SubtractNode(o)
-      o.left.accept(self) - o.value.accept(self)
+      accept(o.left) - accept(o.value)
     end
 
     # Performs a bitwise left shift of the left value of +o+ by the number
     # of bits specified in the right value of +o+.
     def visit_LeftShiftNode(o)
-      o.left.accept(self) << o.value.accept(self)
+      accept(o.left) << accept(o.value)
     end
 
     # Performs a bitwise right shift of the left value of +o+ by the number
     # of bits specified in the right value of +o+.
     def visit_RightShiftNode(o)
-      o.left.accept(self) >> o.value.accept(self)
+      accept(o.left) >> accept(o.value)
     end
 
     # Performs a bitwise AND with the left and right values of +o+.
     def visit_BitwiseAndNode(o)
-      o.left.accept(self) & o.value.accept(self)
+      accept(o.left) & accept(o.value)
     end
 
     # Performs a bitwise XOR with the left and right values of +o+.
     def visit_BitwiseXorNode(o)
-      o.left.accept(self) ^ o.value.accept(self)
+      accept(o.left) ^ accept(o.value)
     end
 
     # Performs a bitwise OR with the left and right values of +o+.
     def visit_BitwiseOrNode(o)
-      o.left.accept(self) | o.value.accept(self)
+      accept(o.left) | accept(o.value)
     end
 
     # Performs a lookup for the value of +o+ inside this visitor's scope. 
