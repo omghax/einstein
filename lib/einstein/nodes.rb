@@ -1,11 +1,11 @@
-require "einstein/visitors"
+require 'einstein/visitors/evaluate_visitor'
+require 'einstein/visitors/pretty_print_visitor'
+require 'einstein/visitors/sexp_visitor'
 
 module Einstein
   module Nodes
     # Base class for all Einstein nodes.
     class Node
-      include Einstein::Visitors
-
       # Initializes a new instance of this node with the given +value+.
       def initialize(value)
         @value = value
