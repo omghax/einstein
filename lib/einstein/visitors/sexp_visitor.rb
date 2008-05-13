@@ -1,9 +1,9 @@
-require 'einstein/visitor'
+require 'einstein/visitors/base'
 
 module Einstein
   module Visitors
     # This visitor walks the AST and returns an s-expression.
-    class SexpVisitor < Visitor
+    class SexpVisitor < Base
       # Example: [:lit, 3]
       def visit_NumberNode(o)
         [:lit, o.value]

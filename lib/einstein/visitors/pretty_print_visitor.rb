@@ -1,4 +1,4 @@
-require 'einstein/visitor'
+require 'einstein/visitors/base'
 
 module Einstein
   module Visitors
@@ -6,7 +6,7 @@ module Einstein
     # This means that it returns an unambiguous string representation of the
     # tree.  All binary expressions are wrapped in parentheses.  This visitor
     # is used when calling #inspect on a node.
-    class PrettyPrintVisitor < Visitor
+    class PrettyPrintVisitor < Base
       # Example: 4
       def visit_NumberNode(o)
         o.value.inspect

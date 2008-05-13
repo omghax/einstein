@@ -1,9 +1,9 @@
-require 'einstein/visitor'
+require 'einstein/visitors/base'
 
 module Einstein
   module Visitors
     # This visitor walks the AST and evaluates the values of the nodes.
-    class EvaluateVisitor < Visitor
+    class EvaluateVisitor < Base
       # Initialize a new instance of this visitor with the given +scope+, as a
       # hash.  This +scope+ should provide a mapping of variable names to
       # values.
