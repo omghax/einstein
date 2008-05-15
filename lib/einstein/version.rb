@@ -1,4 +1,4 @@
-module Einstein #:nodoc:
+module Einstein
   module VERSION #:nodoc:
     MAJOR = 0
     MINOR = 2

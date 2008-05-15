@@ -1,5 +1,5 @@
-require 'einstein/processors/evaluate_processor'
-require 'einstein/processors/pretty_print_processor'
+require 'einstein/evaluator'
+require 'einstein/pretty_printer'
 
 module Einstein
   # Node representing an entire Einstein statement.  This is the root-level
@@ -23,12 +23,12 @@ module Einstein
     # Evaluate this node against the given +scope+. Returns a numeric value
     # calculated by walking the AST with an instance of EvaluateProcessor.
     def evaluate(scope = {})
-      EvaluateProcessor.new(scope).process(sexp.deep_clone)
+      Evaluator.new(scope).process(to_sexp)
     end
 
     # Performs a "pretty print" of this expression.
     def to_s
-      PrettyPrintProcessor.new.process(sexp.deep_clone)
+      PrettyPrinter.new.process(to_sexp)
     end
 
     # Also use #to_s for inspecting a node in IRB.

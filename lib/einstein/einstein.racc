@@ -1,0 +1,41 @@
+class Einstein::Parser
+
+rule
+  exp             : bitwise_or
+
+  literal         : IDENT { result = [:resolve, val.first] }
+                  | NUMBER { result = [:lit, val.first] }
+
+  primary         : '(' exp ')' { result = val[1] }
+                  | literal
+
+  unary           : primary
+                  | '+' unary { result = [:unary_plus, val[1]] }
+                  | '-' unary { result = [:unary_minus, val[1]] }
+                  | '~' unary { result = [:bitwise_not, val[1]] }
+
+  exponent        : unary
+                  | exponent MULT2 unary { result = [:exponent, val[0], val[2]] }
+
+  multiplicative  : exponent
+                  | multiplicative '*' exponent { result = [:multiply, val[0], val[2]] }
+                  | multiplicative '/' exponent { result = [:divide, val[0], val[2]] }
+                  | multiplicative '%' exponent { result = [:modulus, val[0], val[2]] }
+
+  additive        : multiplicative
+                  | additive '+' multiplicative { result = [:add, val[0], val[2]] }
+                  | additive '-' multiplicative { result = [:subtract, val[0], val[2]] }
+
+  shift           : additive
+                  | shift LSHIFT additive { result = [:lshift, val[0], val[2]] }
+                  | shift RSHIFT additive { result = [:rshift, val[0], val[2]] }
+
+  bitwise_and     : shift
+                  | bitwise_and '&' shift { result = [:bitwise_and, val[0], val[2]] }
+
+  bitwise_or      : bitwise_and
+                  | bitwise_or '|' bitwise_and { result = [:bitwise_or, val[0], val[2]] }
+                  | bitwise_or '^' bitwise_and { result = [:bitwise_xor, val[0], val[2]] }
+
+---- header ----
+require 'einstein/einstein.rex.rb'

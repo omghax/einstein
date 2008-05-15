@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/helper"
+require File.dirname(__FILE__) + '/helper'
 
-class TestEvaluateProcessor < Test::Unit::TestCase
+class TestEvaluator < Test::Unit::TestCase
   def test_resolve_should_raise_on_undefined_variable
     assert_raises(Einstein::ResolveError) { process([:resolve, "x"]) }
   end
@@ -9,35 +9,35 @@ class TestEvaluateProcessor < Test::Unit::TestCase
     assert_equal(10, process([:resolve, "x"], "x" => 10))
     assert_equal(10, process([:resolve, "x"], :x => 10))
   end
-  
+
   def test_bitwise_or
     assert_equal(10 | 5, process([:bitwise_or, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_bitwise_xor
     assert_equal(10 ^ 5, process([:bitwise_xor, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_bitwise_and
     assert_equal(10 & 5, process([:bitwise_and, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_rshift
     assert_equal(10 >> 5, process([:rshift, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_lshift
     assert_equal(10 << 5, process([:lshift, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_subtract
     assert_equal(10 - 5, process([:subtract, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_add
     assert_equal(10 + 5, process([:add, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_modulus
     assert_equal(10 % 5, process([:modulus, [:lit, 10], [:lit, 5]]))
   end
@@ -45,29 +45,29 @@ class TestEvaluateProcessor < Test::Unit::TestCase
   def test_divide_should_raise_on_divide_by_zero
     assert_raises(ZeroDivisionError) { process([:divide, [:lit, 10], [:lit, 0]]) }
   end
-  
+
   def test_divide
     assert_equal(10 / 5, process([:divide, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_multiply
     assert_equal(10 * 5, process([:multiply, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_exponent
-    assert_equal(10 ** 5, process([:raise, [:lit, 10], [:lit, 5]]))
+    assert_equal(10 ** 5, process([:exponent, [:lit, 10], [:lit, 5]]))
   end
-  
+
   def test_bitwise_not
     assert_equal(~10, process([:bitwise_not, [:lit, 10]]))
   end
-  
-  def test_u_minus
-    assert_equal(-10, process([:u_minus, [:lit, 10]]))
+
+  def test_unary_minus
+    assert_equal(-10, process([:unary_minus, [:lit, 10]]))
   end
-  
-  def test_u_plus
-    assert_equal(+10, process([:u_plus, [:lit, 10]]))
+
+  def test_unary_plus
+    assert_equal(+10, process([:unary_plus, [:lit, 10]]))
   end
 
   def test_lit
@@ -81,6 +81,6 @@ class TestEvaluateProcessor < Test::Unit::TestCase
   private
 
   def process(exp, scope = {})
-    Einstein::EvaluateProcessor.new(scope).process(exp)
+    Einstein::Evaluator.new(scope).process(exp)
   end
 end

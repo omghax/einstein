@@ -1,6 +1,7 @@
 == 0.2.0 2008-05-10
 
-* 1 major enhancement:
+* 2 major enhancements:
+  * Removed the custom tokenizer in favor of using a rex-based one instead.
   * Huge changes to the internal structure of Einstein. Eliminated the node
     classes in favor of modeling the syntax tree as an s-expression. This
     makes the code much simpler, and I have a feeling it will be faster as

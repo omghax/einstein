@@ -46,13 +46,6 @@ Or you can return an s-expression representation of the tree:
 
 Copyright (c) 2008 by Dray Lacy
 
-== Acknowledgements
-
-Large portions of the parser were taken from the RKelly project by Aaron
-Patterson, which was itself derived from rbnarcissus by Paul Sowden.
-
-Thanks Aaron and Paul!
-
 == License
 
 Einstein is licensed under the MIT License.
