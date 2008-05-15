@@ -40,7 +40,7 @@ You can then evaluate this tree for different values of x:
 Or you can return an s-expression representation of the tree:
 
   >> ast.to_sexp
-  => [:raise, [:resolve, "x"], [:lit, 2]]
+  => [:exponent, [:resolve, "x"], [:lit, 2]]
 
 == Authors
 
