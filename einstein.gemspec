@@ -9,14 +9,16 @@ Gem::Specification.new do |s|
   s.date = %q{2008-05-15}
   s.description = %q{Safe arithmetic parser for Ruby apps}
   s.email = ["dray@izea.com"]
-  s.extra_rdoc_files = ["History.txt", "License.txt", "Manifest.txt", "README.txt", "website/index.txt"]
-  s.files = ["History.txt", "License.txt", "Manifest.txt", "README.txt", "Rakefile", "config/hoe.rb", "config/requirements.rb", "einstein.gemspec", "lib/einstein.rb", "lib/einstein/parser.racc", "lib/einstein/parser.racc.rb", "lib/einstein/parser.rex", "lib/einstein/parser.rex.rb", "lib/einstein/evaluator.rb", "lib/einstein/expression.rb", "lib/einstein/pretty_printer.rb", "lib/einstein/processor.rb", "lib/einstein/version.rb", "script/destroy", "script/generate", "script/txt2html", "setup.rb", "tasks/benchmark.rake", "tasks/deployment.rake", "tasks/environment.rake", "tasks/website.rake", "test/helper.rb", "test/test_einstein.rb", "test/test_evaluator.rb", "test/test_parser.rb", "test/test_pretty_printer.rb", "website/index.html", "website/index.txt", "website/javascripts/rounded_corners_lite.inc.js", "website/stylesheets/screen.css", "website/template.rhtml"]
+  s.extra_rdoc_files = ["Benchmarks.txt", "History.txt", "License.txt", "Manifest.txt", "README.txt"]
+  s.files = ["Benchmarks.txt", "History.txt", "License.txt", "Manifest.txt", "README.txt", "Rakefile", "einstein.gemspec", "lib/einstein.rb", "lib/einstein/evaluator.rb", "lib/einstein/expression.rb", "lib/einstein/parser.racc", "lib/einstein/parser.racc.rb", "lib/einstein/parser.rex", "lib/einstein/parser.rex.rb", "lib/einstein/pretty_printer.rb", "lib/einstein/processor.rb", "lib/einstein/version.rb", "setup.rb", "tasks/benchmark.rake", "test/helper.rb", "test/test_einstein.rb", "test/test_evaluator.rb", "test/test_parser.rb", "test/test_pretty_printer.rb"]
   s.has_rdoc = true
-  s.homepage = %q{http://einstein.rubyforge.org}
+  s.homepage = %q{http://github.com/omghax/einstein}
   s.rdoc_options = ["--main", "README.txt"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{einstein}
   s.rubygems_version = %q{1.1.1}
   s.summary = %q{Safe arithmetic parser for Ruby apps}
   s.test_files = ["test/test_einstein.rb", "test/test_evaluator.rb", "test/test_parser.rb", "test/test_pretty_printer.rb"]
+
+  s.add_dependency(%q<hoe>, [">= 1.5.1"])
 end

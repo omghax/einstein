@@ -3,6 +3,7 @@ $:.unshift File.dirname(__FILE__)
 require 'einstein/parser.racc.rb'
 require 'einstein/parser.rex.rb'
 require 'einstein/expression'
+require 'einstein/version'
 
 module Einstein
   # Raised when an undefined variable is referenced.
