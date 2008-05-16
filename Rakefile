@@ -3,14 +3,14 @@ require 'config/hoe' # setup Hoe + all gem configuration
 
 Dir['tasks/**/*.rake'].each { |rake| load rake }
 
-GENERATED_PARSER = 'lib/einstein/einstein.racc.rb'
-GENERATED_LEXER = 'lib/einstein/einstein.rex.rb'
+GENERATED_PARSER = 'lib/einstein/parser.racc.rb'
+GENERATED_LEXER = 'lib/einstein/parser.rex.rb'
 
-file GENERATED_LEXER => 'lib/einstein/einstein.rex' do |t|
+file GENERATED_LEXER => 'lib/einstein/parser.rex' do |t|
   sh "rex -o #{t.name} #{t.prerequisites.first}"
 end
 
-file GENERATED_PARSER => 'lib/einstein/einstein.racc' do |t|
+file GENERATED_PARSER => 'lib/einstein/parser.racc' do |t|
   sh "racc -o #{t.name} #{t.prerequisites.first}"
 end
 

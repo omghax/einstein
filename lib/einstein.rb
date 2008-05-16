@@ -1,7 +1,7 @@
 # Add ./lib to the load path.
 $:.unshift File.dirname(__FILE__)
-require 'einstein/einstein.racc.rb'
-require 'einstein/einstein.rex.rb'
+require 'einstein/parser.racc.rb'
+require 'einstein/parser.rex.rb'
 require 'einstein/expression'
 
 module Einstein

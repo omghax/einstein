@@ -38,4 +38,4 @@ rule
                   | bitwise_or '^' bitwise_and { result = [:bitwise_xor, val[0], val[2]] }
 
 ---- header ----
-require 'einstein/einstein.rex.rb'
+require 'einstein/parser.rex.rb'
